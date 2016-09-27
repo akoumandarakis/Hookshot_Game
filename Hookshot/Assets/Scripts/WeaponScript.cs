@@ -41,6 +41,8 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     private Vector3 screenPos;
 
+	public Vector3 shotStartPos;
+
 	// Use this for initialization
 	void Start () {
         shotCooldown = 0f;
@@ -84,7 +86,7 @@ public class WeaponScript : MonoBehaviour {
 
             //Create a new shot at the position of the weapon
             var shot = Instantiate(shotPrefab) as Transform;
-			shot.position = new Vector3 (transform.right.x, transform.right.y, transform.position.z);
+			shot.position = new Vector3 (transform.position.x + transform.right.x, transform.position.y + transform.right.y, transform.position.z);
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 
@@ -116,6 +118,7 @@ public class WeaponScript : MonoBehaviour {
 
             //Sets the rotation of the weapon based on that position
             transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((screenPos.y - transform.position.y), (screenPos.x - transform.position.x)) * Mathf.Rad2Deg);
+			shotStartPos = new Vector3 (transform.right.x, transform.right.y, transform.position.z);
         }
     }
 }
