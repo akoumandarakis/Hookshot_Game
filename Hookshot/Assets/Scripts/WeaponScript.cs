@@ -21,6 +21,11 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     public bool enemyWeapon;
 
+	/// <summary>
+	/// Whether or not the weapon tracks the player
+	/// </summary>
+	public bool trackPlayer;
+
     /// <summary>
     /// The time until the next shot can be fired
     /// </summary>
