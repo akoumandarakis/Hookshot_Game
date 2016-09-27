@@ -15,6 +15,11 @@ public class MoveScript : MonoBehaviour {
     /// The direction that the object will move in
     /// </summary>
     public Vector2 direction = new Vector2(1, 0);
+
+	/// <summary>
+	/// Whether the object moves relative to itself or to the world
+	/// </summary>
+	public bool moveRelativeToSelf;
     
     /// <summary>
     /// The speed multiplied by the direction
@@ -27,6 +32,15 @@ public class MoveScript : MonoBehaviour {
         velocity = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
 
         velocity *= Time.deltaTime;
-        transform.Translate(velocity);
+		if (moveRelativeToSelf) 
+		{
+			transform.Translate(velocity, Space.Self);
+		} 
+		else 
+		{
+			transform.Translate(velocity, Space.World);
+		}
+
+        
 	}
 }

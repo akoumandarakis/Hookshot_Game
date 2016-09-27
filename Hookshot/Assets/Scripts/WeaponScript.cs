@@ -92,6 +92,7 @@ public class WeaponScript : MonoBehaviour {
             //Create a new shot at the position of the weapon
             var shot = Instantiate(shotPrefab) as Transform;
 			shot.position = new Vector3 (transform.position.x + transform.right.x, transform.position.y + transform.right.y, transform.position.z);
+			shot.eulerAngles = transform.eulerAngles;
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 
@@ -105,8 +106,9 @@ public class WeaponScript : MonoBehaviour {
             MoveScript movement = shot.gameObject.GetComponent<MoveScript>();
             if (movement != null)
             {
-                movement.direction = this.transform.right;
+                movement.direction = shot.transform.right;
             }
+
         }
     }
 
