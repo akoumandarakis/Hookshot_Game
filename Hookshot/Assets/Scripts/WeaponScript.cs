@@ -84,7 +84,7 @@ public class WeaponScript : MonoBehaviour {
 
             //Create a new shot at the position of the weapon
             var shot = Instantiate(shotPrefab) as Transform;
-            shot.position = transform.position;
+			shot.position = new Vector3 (transform.right.x, transform.right.y, transform.position.z);
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 
