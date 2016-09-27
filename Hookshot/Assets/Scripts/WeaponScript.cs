@@ -22,9 +22,14 @@ public class WeaponScript : MonoBehaviour {
     public bool enemyWeapon;
 
 	/// <summary>
-	/// Whether or not the weapon tracks the player
+	/// Whether or not the weapon tracks an object
 	/// </summary>
-	public bool trackPlayer;
+	public bool tracksObject;
+
+	/// <summary>
+	/// The object the weapon tracks
+	/// </summary>
+	public GameObject objectToTrack;
 
     /// <summary>
     /// The time until the next shot can be fired
@@ -41,7 +46,7 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     private Vector3 screenPos;
 
-	public Vector3 shotStartPos;
+	private Vector3 objPos;
 
 	// Use this for initialization
 	void Start () {
@@ -118,7 +123,15 @@ public class WeaponScript : MonoBehaviour {
 
             //Sets the rotation of the weapon based on that position
             transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((screenPos.y - transform.position.y), (screenPos.x - transform.position.x)) * Mathf.Rad2Deg);
-			shotStartPos = new Vector3 (transform.right.x, transform.right.y, transform.position.z);
         }
+
+		if (tracksObject && objectToTrack != null) 
+		{
+			//Gets the position of the object and creates a vector from the that position on the screen
+			objPos = objectToTrack.transform.position;
+
+			//Sets the rotation of the weapon based on that position
+			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
+		}
     }
 }
