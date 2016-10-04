@@ -1,61 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using Prime31;
 
 public class PlayerScript : MonoBehaviour {
 
-    //player's Rigidbody2D component
-    Rigidbody2D PlayerRigidBody;
+    public float walkSpeed;
+    public float jumpHeight;
+    public float gravity;
 
-    //true means that the player is on a solid object
-    public bool isGrounded = false;
+    private CharacterController2D Controller;
 
-    //this stores a reference to the gravitational force if there is one
-    private Vector2 gravity;
-    //how much gravity force changes each update if player isn't grounded
-    public Vector2 gravityAcceleration = new Vector2(0, 0);
-    //zero vector
-    private Vector2 zeroVector = new Vector2(0, 0);
-
-	//initialization
-	void Start () {
-        PlayerRigidBody = GetComponent<Rigidbody2D>();
-        gravity = new Vector2(0, 0);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
-        System.Console.WriteLine(isGrounded.ToString());
-        updateGravity();
-
-        //other movement goes here
-
-
-        //movement update
-        transform.Translate(gravity, Space.Self);
-    }
-
-    /// <summary>
-    /// removes gravity if the player is grounded,
-    /// adds gravity if the player is newly ungrounded,
-    /// updates gravity otherwise
-    /// </summary>
-    private void updateGravity()
+    void Start()
     {
-        //if grounded remove the gravity vector
-        if (isGrounded && gravity != zeroVector)
+        Controller = gameObject.GetComponent<CharacterController2D>();
+    }
+
+    void Update()
+    {
+        Vector3 velocity = Controller.velocity;
+
+        velocity.x = 0;
+
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            gravity = zeroVector;
+            velocity.x = walkSpeed * -1;
         }
-        //if ungrounded and there is no gravity yet, make a gravity vector
-        else if (!isGrounded && gravity == zeroVector)
+        else if (Input.GetAxis("Horizontal") > 0)
         {
-            gravity = new Vector2(0, -.5F);
-        }
-        else if (!isGrounded)
-        {
-            gravity = gravity + gravityAcceleration;
+            velocity.x = walkSpeed;
         }
 
+        if (Input.GetKeyDown("space") && Controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        Controller.move(velocity * Time.deltaTime);
     }
 }
