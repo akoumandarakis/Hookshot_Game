@@ -27,6 +27,11 @@ public class WeaponScript : MonoBehaviour {
 	public bool tracksObject;
 
 	/// <summary>
+	/// Whether or not the weapon can rotate past 180 degrees
+	/// </summary>
+	public bool cantGoPast180Degrees;
+
+	/// <summary>
 	/// The object the weapon tracks
 	/// </summary>
 	public GameObject objectToTrack;
@@ -134,6 +139,19 @@ public class WeaponScript : MonoBehaviour {
 
 			//Sets the rotation of the weapon based on that position
 			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
+		}
+
+		if (cantGoPast180Degrees) 
+		{
+			if (transform.eulerAngles.z >= 180 && transform.eulerAngles.z <= 270) 
+			{
+				transform.eulerAngles = new Vector3 (0, 0, 180);
+			} 
+			else if (transform.eulerAngles.z <= 360 && transform.eulerAngles.z >= 270) 
+			{
+				transform.eulerAngles = new Vector3 (0, 0, 360
+				);
+			}
 		}
     }
 }
