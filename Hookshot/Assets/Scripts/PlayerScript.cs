@@ -5,6 +5,8 @@ using Prime31;
 
 public class PlayerScript : MonoBehaviour {
 
+    public GameObject mainCamera;
+
     public float walkSpeed;
     public float jumpHeight;
     public float gravity;
@@ -14,6 +16,7 @@ public class PlayerScript : MonoBehaviour {
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
+        mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
     }
 
     void Update()
