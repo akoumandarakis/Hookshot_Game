@@ -56,47 +56,9 @@ public class WeaponScript : MonoBehaviour {
 	/// </summary>
 	private Vector3 objPos;
 
-	/// <summary>
-	/// The start rotation.
-	/// </summary>
-	public Vector3 startRotation; 
-
-	/// <summary>
-	/// The current rotation.
-	/// </summary>
-	public Vector3 currentRotation;
-
-	/// <summary>
-	/// The max rotation allowed (if it can't go past 180 degrees).
-	/// </summary>
-	public float maxRot;
-
-	/// <summary>
-	/// The minimum rotation allowed (if it can't go past 180 degrees).
-	/// </summary>
-	public float minRot;
-
-	/// <summary>
-	/// The opposite of the starting rotation
-	/// </summary>
-	public float opStartRot;
-
 	// Use this for initialization
 	void Start () {
         shotCooldown = 0f;
-
-		//Get the start rotation
-		startRotation = transform.eulerAngles;
-
-		//Calculate the max, min, and opposite rotations
-		maxRot = startRotation.z + 90;
-		maxRot = correctAngleNum (maxRot);
-
-		minRot = startRotation.z + 270;
-		minRot = correctAngleNum (minRot);
-
-		opStartRot = startRotation.z + 180;
-		opStartRot = correctAngleNum (opStartRot);
 	}
 	
 	// Update is called once per frame
@@ -184,38 +146,5 @@ public class WeaponScript : MonoBehaviour {
 			//Sets the rotation of the weapon based on that position
 			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
 		}
-
-		//Make sure the weapon can't rotate past 90 degrees in either direction of its starting rotation
-		if (cantGoPast180Degrees) 
-		{
-			currentRotation = transform.eulerAngles;
-
-			if (currentRotation.z >= maxRot && currentRotation.z <= opStartRot) 
-			{
-				transform.eulerAngles = new Vector3 (0, 0, maxRot);
-			} 
-			else if (currentRotation.z <= minRot && currentRotation.z >= opStartRot) 
-			{
-				transform.eulerAngles = new Vector3 (0, 0, minRot);
-			}
-		}
     }
-
-	/// <summary>
-	/// Corrects the angle so that it is a number between 1 and 360
-	/// </summary>
-	/// <returns>The angle</returns>
-	/// <param name="angle">The number to be corrected</param>
-	private float correctAngleNum(float angle, float startAngle)
-	{
-		if (angle > 360) 
-		{
-			angle = angle - 360;
-		}
-		if (angle < 1 && angle > 0) 
-		{
-			angle = 360;
-		}
-		return angle;
-	}
 }
