@@ -4,7 +4,8 @@ using System.Collections;
 /// <summary>
 /// Creates a weapon that can generate shots
 /// </summary>
-public class WeaponScript : MonoBehaviour {
+public class WeaponScript : MonoBehaviour
+{
 
     /// <summary>
     /// The shot that will be fired by the weapon
@@ -21,20 +22,15 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     public bool enemyWeapon;
 
-	/// <summary>
-	/// Whether or not the weapon tracks an object
-	/// </summary>
-	public bool tracksObject;
+    /// <summary>
+    /// Whether or not the weapon tracks an object
+    /// </summary>
+    public bool tracksObject;
 
-	/// <summary>
-	/// Whether or not the weapon can rotate past 180 degrees
-	/// </summary>
-	public bool cantGoPast180Degrees;
-
-	/// <summary>
-	/// The object the weapon tracks
-	/// </summary>
-	public GameObject objectToTrack;
+    /// <summary>
+    /// The object the weapon tracks
+    /// </summary>
+    public GameObject objectToTrack;
 
     /// <summary>
     /// The time until the next shot can be fired
@@ -51,56 +47,20 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     private Vector3 screenPos;
 
-	/// <summary>
-	/// The object position.
-	/// </summary>
-	private Vector3 objPos;
+    /// <summary>
+    /// The object position.
+    /// </summary>
+    private Vector3 objPos;
 
-	/// <summary>
-	/// The start rotation.
-	/// </summary>
-	public Vector3 startRotation; 
-
-	/// <summary>
-	/// The current rotation.
-	/// </summary>
-	public Vector3 currentRotation;
-
-	/// <summary>
-	/// The max rotation allowed (if it can't go past 180 degrees).
-	/// </summary>
-	public float maxRot;
-
-	/// <summary>
-	/// The minimum rotation allowed (if it can't go past 180 degrees).
-	/// </summary>
-	public float minRot;
-
-	/// <summary>
-	/// The opposite of the starting rotation
-	/// </summary>
-	public float opStartRot;
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         shotCooldown = 0f;
+    }
 
-		//Get the start rotation
-		startRotation = transform.eulerAngles;
-
-		//Calculate the max, min, and opposite rotations
-		maxRot = startRotation.z + 90;
-		maxRot = correctAngleNum (maxRot);
-
-		minRot = startRotation.z + 270;
-		minRot = correctAngleNum (minRot);
-
-		opStartRot = startRotation.z + 180;
-		opStartRot = correctAngleNum (opStartRot);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         //Update the rotation of the weapon
         updateRotation();
 
@@ -109,19 +69,13 @@ public class WeaponScript : MonoBehaviour {
         {
             shotCooldown -= Time.deltaTime;
         }
-        
-        //Enemy weapons just shoot continuously
-        if (enemyWeapon)
-        {
-            Shoot(true);
-        }
-        
+			
         //If the left mouse button is clicked and it's a player's weapon, fire the weapon 
         if (Input.GetButtonDown("Fire1") && !enemyWeapon)
         {
             Shoot(false);
         }
-	}
+    }
 
     /// <summary>
     /// Creates a shot based on the position and rotation of the weapon
@@ -130,22 +84,22 @@ public class WeaponScript : MonoBehaviour {
     public void Shoot(bool isEnemy)
     {
         //If the shot cooldown has reached 0
-        if (shotCooldown <= 0f)
+		if (shotCooldown <= 0f)
         {
             //Reset the shot cooldown
             shotCooldown = shotRate;
 
             //Create a new shot at the position of the weapon
-            var shot = Instantiate(shotPrefab) as Transform;
-			shot.position = new Vector3 (transform.position.x + transform.right.x, transform.position.y + transform.right.y, transform.position.z);
-			shot.eulerAngles = transform.eulerAngles;
+			var shot = Instantiate(shotPrefab) as Transform;
+            shot.position = new Vector3(transform.position.x + transform.right.x, transform.position.y + transform.right.y, transform.position.z);
+            shot.eulerAngles = transform.eulerAngles;
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 
             //Sets whether or not the shot is an enemy's or the player's
             if (shot != null)
             {
-                 shotScript.enemyShot = isEnemy;
+                shotScript.enemyShot = isEnemy;
             }
 
             //Makes sure the shot moves right relative to the weapon
@@ -163,10 +117,7 @@ public class WeaponScript : MonoBehaviour {
     /// </summary>
     public void updateRotation()
     {
-
-
-
-        if (!enemyWeapon) 
+        if (!enemyWeapon)
         {
             //Gets the position of the mouse and creates a vector from the that position on the screen
             mousePos = Input.mousePosition;
@@ -176,46 +127,21 @@ public class WeaponScript : MonoBehaviour {
             transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((screenPos.y - transform.position.y), (screenPos.x - transform.position.x)) * Mathf.Rad2Deg);
         }
 
-		if (tracksObject && objectToTrack != null) 
-		{
-			//Gets the position of the object and creates a vector from the that position on the screen
-			objPos = objectToTrack.transform.position;
+        if (tracksObject && objectToTrack != null)
+        {
+            //Gets the position of the object and creates a vector from the that position on the screen
+            objPos = objectToTrack.transform.position;
 
-			//Sets the rotation of the weapon based on that position
-			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
-		}
-
-		//Make sure the weapon can't rotate past 90 degrees in either direction of its starting rotation
-		if (cantGoPast180Degrees) 
-		{
-			currentRotation = transform.eulerAngles;
-
-			if (currentRotation.z >= maxRot && currentRotation.z <= opStartRot) 
-			{
-				transform.eulerAngles = new Vector3 (0, 0, maxRot);
-			} 
-			else if (currentRotation.z <= minRot && currentRotation.z >= opStartRot) 
-			{
-				transform.eulerAngles = new Vector3 (0, 0, minRot);
-			}
-		}
+            //Sets the rotation of the weapon based on that position
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
+        }
     }
 
-	/// <summary>
-	/// Corrects the angle so that it is a number between 1 and 360
-	/// </summary>
-	/// <returns>The angle</returns>
-	/// <param name="angle">The number to be corrected</param>
-	private float correctAngleNum(float angle, float startAngle)
-	{
-		if (angle > 360) 
-		{
-			angle = angle - 360;
-		}
-		if (angle < 1 && angle > 0) 
-		{
-			angle = 360;
-		}
-		return angle;
-	}
+    public bool CanAttack
+    {
+        get
+        {
+            return shotCooldown <= 0f;
+        }
+    }
 }

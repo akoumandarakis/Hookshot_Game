@@ -15,9 +15,13 @@ public class ShotScript : MonoBehaviour {
     /// </summary>
     public bool enemyShot = false;
 
+    /// <summary>
+    /// The time a shot can travel before being destroyed
+    /// </summary>
+    public float range;
+
 	// Use this for initialization
 	void Start () {
-        //Destroy any shot after ten seconds
-        Destroy(gameObject, 10);
+        Destroy(gameObject, range);
 	}
 }
