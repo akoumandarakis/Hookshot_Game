@@ -47,6 +47,7 @@ public class WeaponScript : MonoBehaviour
     /// </summary>
     private Vector3 screenPos;
 
+<<<<<<< HEAD
     /// <summary>
     /// The object position.
     /// </summary>
@@ -61,6 +62,20 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+=======
+	/// <summary>
+	/// The object position.
+	/// </summary>
+	private Vector3 objPos;
+
+	// Use this for initialization
+	void Start () {
+        shotCooldown = 0f;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+>>>>>>> 9e065a1c1da8b4b46ac4701b7dadfd1a4a698982
         //Update the rotation of the weapon
         updateRotation();
 
@@ -127,6 +142,7 @@ public class WeaponScript : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((screenPos.y - transform.position.y), (screenPos.x - transform.position.x)) * Mathf.Rad2Deg);
         }
 
+<<<<<<< HEAD
         if (tracksObject && objectToTrack != null)
         {
             //Gets the position of the object and creates a vector from the that position on the screen
@@ -145,3 +161,15 @@ public class WeaponScript : MonoBehaviour
         }
     }
 }
+=======
+		if (tracksObject && objectToTrack != null) 
+		{
+			//Gets the position of the object and creates a vector from the that position on the screen
+			objPos = objectToTrack.transform.position;
+
+			//Sets the rotation of the weapon based on that position
+			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((objPos.y - transform.position.y), (objPos.x - transform.position.x)) * Mathf.Rad2Deg);
+		}
+    }
+}
+>>>>>>> 9e065a1c1da8b4b46ac4701b7dadfd1a4a698982

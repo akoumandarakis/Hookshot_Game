@@ -14,12 +14,14 @@ public class PlayerScript : MonoBehaviour {
     public Vector3 hookshotAdjust;
 
     private CharacterController2D Controller;
+	private AnimationController2D Animator;
 
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
         mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
         hookshotAdjust = new Vector3(0, 0, 0);
+		Animator = gameObject.GetComponent<AnimationController2D> ();
     }
 
     void Update()
@@ -28,18 +30,35 @@ public class PlayerScript : MonoBehaviour {
 
         velocity.x = 0;
 
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            velocity.x = walkSpeed * -1;
-        }
-        else if (Input.GetAxis("Horizontal") > 0)
-        {
-            velocity.x = walkSpeed;
-        }
+		if (Input.GetAxis ("Horizontal") < 0) {
+			
+			velocity.x = walkSpeed * -1;
+
+			if (Controller.isGrounded) {
+				Animator.setAnimation ("WalkAnimation");
+			}
+
+			Animator.setFacing ("Left");
+
+		} 
+		else if (Input.GetAxis ("Horizontal") > 0) {
+			
+			velocity.x = walkSpeed;
+			if (Controller.isGrounded) {
+				Animator.setAnimation ("WalkAnimation");
+			}
+
+			Animator.setFacing ("Right");
+
+		} 
+		else {
+			Animator.setAnimation ("PlayerIdle");
+		}
 
         if (Input.GetKeyDown("space") && Controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
+			Animator.setAnimation ("PlayerIdle");
         }
 
         velocity.y += gravity * Time.deltaTime;
