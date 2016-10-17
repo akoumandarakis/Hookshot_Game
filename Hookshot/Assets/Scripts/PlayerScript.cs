@@ -11,12 +11,15 @@ public class PlayerScript : MonoBehaviour {
     public float jumpHeight;
     public float gravity;
 
+    public Vector3 hookshotAdjust;
+
     private CharacterController2D Controller;
 
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
         mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
+        hookshotAdjust = new Vector3(0, 0, 0);
     }
 
     void Update()
