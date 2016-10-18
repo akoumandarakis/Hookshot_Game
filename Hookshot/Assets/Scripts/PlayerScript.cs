@@ -11,16 +11,19 @@ public class PlayerScript : MonoBehaviour {
     public float jumpHeight;
     public float gravity;
 
+    [HideInInspector]
     public Vector3 hookshotAdjust;
+    [HideInInspector]
+    public bool hookLatched;
 
     private CharacterController2D Controller;
 	private AnimationController2D Animator;
+    private Vector3 ZeroVector = new Vector3(0, 0, 0);
 
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
         mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
-        hookshotAdjust = new Vector3(0, 0, 0);
 		Animator = gameObject.GetComponent<AnimationController2D> ();
     }
 
@@ -38,7 +41,7 @@ public class PlayerScript : MonoBehaviour {
 				Animator.setAnimation ("WalkAnimation");
 			}
 
-			Animator.setFacing ("Left");
+			//Animator.setFacing ("Left");
 
 		} 
 		else if (Input.GetAxis ("Horizontal") > 0) {
@@ -48,7 +51,7 @@ public class PlayerScript : MonoBehaviour {
 				Animator.setAnimation ("WalkAnimation");
 			}
 
-			Animator.setFacing ("Right");
+			//Animator.setFacing ("Right");
 
 		} 
 		else {
@@ -61,7 +64,10 @@ public class PlayerScript : MonoBehaviour {
 			Animator.setAnimation ("PlayerIdle");
         }
 
+        velocity += hookshotAdjust;
+
         velocity.y += gravity * Time.deltaTime;
+
         Controller.move(velocity * Time.deltaTime);
     }
 }
