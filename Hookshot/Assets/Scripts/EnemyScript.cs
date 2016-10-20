@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     private WeaponScript[] weapons;
     private Collider2D coliderComponent;
     private SpriteRenderer rendererComponent;
+	private SoldierMoveScript soldiermoveScript;
 
     void Awake()
     {
@@ -22,6 +23,8 @@ public class EnemyScript : MonoBehaviour
         coliderComponent = GetComponent<Collider2D>();
 
         rendererComponent = GetComponent<SpriteRenderer>();
+
+		soldiermoveScript = GetComponent<SoldierMoveScript> ();
     }
 
     // 1 - Disable everything
@@ -31,13 +34,31 @@ public class EnemyScript : MonoBehaviour
 
         // Disable everything
         // -- collider
-        coliderComponent.enabled = false;
+		if (coliderComponent != null) 
+		{
+			coliderComponent.enabled = false;
+		}
+        
         // -- Moving
-        moveScript.enabled = false;
+		if (moveScript != null) 
+		{
+			moveScript.enabled = false;
+		}
+
+		// -- Moving
+		if (soldiermoveScript != null) 
+		{
+			soldiermoveScript.enabled = false;
+		}
+        
         // -- Shooting
         foreach (WeaponScript weapon in weapons)
         {
-            weapon.enabled = false;
+			if (weapon != null) 
+			{
+				weapon.enabled = false;
+			}
+            
         }
     }
 
@@ -61,6 +82,11 @@ public class EnemyScript : MonoBehaviour
                     weapon.Shoot(true);
                 }
             }
+
+			if (rendererComponent.isVisible == false)
+			{
+				Disable();
+			}
         }
     }
 
@@ -69,15 +95,55 @@ public class EnemyScript : MonoBehaviour
     {
         hasSpawn = true;
 
-        // Enable everything
-        // -- Collider
-        coliderComponent.enabled = true;
-        // -- Moving
-        moveScript.enabled = true;
-        // -- Shooting
-        foreach (WeaponScript weapon in weapons)
-        {
-            weapon.enabled = true;
-        }
+		// Disable everything
+		// -- collider
+		if (coliderComponent != null) 
+		{
+			coliderComponent.enabled = true;
+		}
+
+		// -- Moving
+		if (moveScript != null) 
+		{
+			moveScript.enabled = true;
+		}
+
+		// -- Moving
+		if (soldiermoveScript != null) 
+		{
+			soldiermoveScript.enabled = true;
+		}
+
+		// -- Shooting
+		foreach (WeaponScript weapon in weapons)
+		{
+			if (weapon != null) 
+			{
+				weapon.enabled = true;
+			}
+
+		}
     }
+
+	private void Disable()
+	{
+		hasSpawn = false;
+
+		// Disable everything
+		// -- collider
+		if (coliderComponent != null) 
+		{
+			coliderComponent.enabled = false;
+		}
+
+		// -- Shooting
+		foreach (WeaponScript weapon in weapons)
+		{
+			if (weapon != null) 
+			{
+				weapon.enabled = false;
+			}
+
+		}
+	}
 }

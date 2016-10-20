@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Prime31;
 
 public class HookShotScript : MonoBehaviour {
 
-    //Player Rigid body
-    private PlayerScript player;
+    //Player aspects
+    private PlayerScript playerScript;
+    private Transform parent;
+    private CharacterController2D playerController;
 
     //hookshot speed
     public float speed = 1;
@@ -15,6 +18,8 @@ public class HookShotScript : MonoBehaviour {
     public float maxDistanceFromPlayer = 1;
     //distance at which hook will snap back to origin on retract
     public float minRetractDistance = 10;
+    //distance at which hook will consider the player successfully pulled to target
+    public float minLatchRetractDistance = 2;
 
     //unit vector in which it was aimed
     private Vector3 direction;
@@ -31,7 +36,11 @@ public class HookShotScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GetComponentInParent<PlayerScript>();
+        playerScript = GetComponentInParent<PlayerScript>();
+        playerController = GetComponentInParent<CharacterController2D>();
+
+        parent = transform.parent;
+
         fired = false;
         latched = false;
         blocked = false;
@@ -43,15 +52,19 @@ public class HookShotScript : MonoBehaviour {
         if (!fired && Input.GetButtonDown("Fire2"))
         {
             fired = true;
+            transform.parent = null;
 
             Vector3 mousePOS = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            mousePOS.z = 0;
+
             //make a normalized vector for direction
-            direction = mousePOS - player.transform.position;
+            direction = mousePOS - playerScript.transform.position;
             direction.Normalize();
+            direction.z = transform.position.z;
         }
 
-        if (fired && Input.GetButtonDown("Jump"))
+        if (fired && Input.GetButtonDown("Jump") && latched)
         {
             ResetHookshot();
         }
@@ -59,7 +72,7 @@ public class HookShotScript : MonoBehaviour {
         if (fired)
         {
             //if the hook has reached max distance it is the same as being blocked
-            Vector3 HookToPlayer = transform.position - player.transform.position;
+            Vector3 HookToPlayer = transform.position - playerScript.transform.position;
             if (HookToPlayer.magnitude > maxDistanceFromPlayer)
             {
                 blocked = true;
@@ -80,6 +93,7 @@ public class HookShotScript : MonoBehaviour {
             Retract();
         }
 
+        playerScript.hookLatched = latched;
     }
 
     private void Retract()
@@ -87,7 +101,8 @@ public class HookShotScript : MonoBehaviour {
         if (blocked)
         {
             //direction is now directed to the player
-            direction = player.transform.position - transform.position;
+            direction = playerScript.transform.position - transform.position;
+            
 
             if (direction.magnitude < minRetractDistance)
             {
@@ -101,10 +116,25 @@ public class HookShotScript : MonoBehaviour {
         }
         else if (latched)
         {
-            handOffDirection = transform.position - player.transform.position;
-            handOffDirection /= retractSpeed;
+            handOffDirection = transform.position - playerScript.transform.position;
 
-            player.hookshotAdjust = handOffDirection;
+            handOffDirection.z = 0;
+
+            if (handOffDirection.magnitude < minLatchRetractDistance)
+            {
+                ResetHookshot();
+            }
+            else
+            {
+                handOffDirection.Normalize();
+
+                handOffDirection.z = transform.position.z;
+
+                handOffDirection *= retractSpeed;
+
+                playerScript.hookshotAdjust = handOffDirection;
+                Debug.Log(handOffDirection.ToString());
+            }
         }
         else
         {
@@ -122,9 +152,9 @@ public class HookShotScript : MonoBehaviour {
 
     private void Move()
     {
+
         //Transforms the object based on its velocity
         velocity = new Vector3(speed * direction.x, speed * direction.y, 0);
-
 
         velocity *= Time.deltaTime;
 
@@ -133,9 +163,11 @@ public class HookShotScript : MonoBehaviour {
 
     private void ResetHookshot()
     {
-        transform.position = player.transform.position;
+        transform.position = playerScript.transform.position;
 
-        player.hookshotAdjust = ZeroVector;
+        playerScript.hookshotAdjust = ZeroVector;
+
+        transform.parent = parent;
          
         blocked = false;
         fired = false;
