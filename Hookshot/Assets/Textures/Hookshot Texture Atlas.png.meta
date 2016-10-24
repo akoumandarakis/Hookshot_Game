@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1feef80c1c20c4850b311e20b4e60144
-timeCreated: 1477026275
+timeCreated: 1477278493
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -130,6 +130,35 @@ TextureImporter:
     21300246: Hookshot Texture Atlas_123
     21300248: Hookshot Texture Atlas_124
     21300250: Hookshot Texture Atlas_125
+    21300252: Hookshot Texture Atlas_126
+    21300254: Hookshot Texture Atlas_127
+    21300256: Hookshot Texture Atlas_128
+    21300258: Hookshot Texture Atlas_129
+    21300260: Hookshot Texture Atlas_130
+    21300262: Hookshot Texture Atlas_131
+    21300264: Hookshot Texture Atlas_132
+    21300266: Hookshot Texture Atlas_133
+    21300268: Hookshot Texture Atlas_134
+    21300270: Hookshot Texture Atlas_135
+    21300272: Hookshot Texture Atlas_136
+    21300274: Hookshot Texture Atlas_137
+    21300276: Hookshot Texture Atlas_138
+    21300278: Hookshot Texture Atlas_139
+    21300280: Hookshot Texture Atlas_140
+    21300282: Hookshot Texture Atlas_141
+    21300284: Hookshot Texture Atlas_142
+    21300286: Hookshot Texture Atlas_143
+    21300288: Hookshot Texture Atlas_144
+    21300290: Hookshot Texture Atlas_145
+    21300292: Hookshot Texture Atlas_146
+    21300294: Hookshot Texture Atlas_147
+    21300296: Hookshot Texture Atlas_148
+    21300298: Hookshot Texture Atlas_149
+    21300300: Hookshot Texture Atlas_150
+    21300302: Hookshot Texture Atlas_151
+    21300304: Hookshot Texture Atlas_152
+    21300306: Hookshot Texture Atlas_153
+    21300308: Hookshot Texture Atlas_154
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -487,7 +516,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 831
+        y: 832
         width: 64
         height: 64
       alignment: 0
@@ -851,9 +880,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 1002
+        y: 1000
         width: 32
-        height: 2
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1019,10 +1048,10 @@ TextureImporter:
       name: Hookshot Texture Atlas_65
       rect:
         serializedVersion: 2
-        x: 320
-        y: 976
+        x: 356
+        y: 994
         width: 9
-        height: 9
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1033,9 +1062,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 987
+        y: 986
         width: 32
-        height: 3
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1591,10 +1620,10 @@ TextureImporter:
       name: Hookshot Texture Atlas_110
       rect:
         serializedVersion: 2
-        x: 331
-        y: 976
+        x: 367
+        y: 994
         width: 9
-        height: 9
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1816,6 +1845,383 @@ TextureImporter:
         y: 896
         width: 64
         height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_126
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_127
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_128
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_129
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_130
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 965
+        width: 14
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_131
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_132
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_133
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_134
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_135
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_136
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_137
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_138
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_139
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_140
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 127
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_141
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_142
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 416
+        width: 9
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_143
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 442
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_144
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 388
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_145
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 388
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_146
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 387
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_147
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 440
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_148
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 425
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_149
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 443
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_150
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 430
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_151
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 437
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_152
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 394
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_153
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 976
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_154
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 976
+        width: 9
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
