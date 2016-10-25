@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     private Collider2D coliderComponent;
     private SpriteRenderer rendererComponent;
 	private SoldierMoveScript soldiermoveScript;
+	private MoveTowardScript moveTowardScript;
 
     void Awake()
     {
@@ -19,6 +20,8 @@ public class EnemyScript : MonoBehaviour
 
         // Retrieve scripts to disable when not spawn
         moveScript = GetComponent<MoveScript>();
+
+		moveTowardScript = GetComponent<MoveTowardScript> ();
 
         coliderComponent = GetComponent<Collider2D>();
 
@@ -43,6 +46,11 @@ public class EnemyScript : MonoBehaviour
 		if (moveScript != null) 
 		{
 			moveScript.enabled = false;
+		}
+
+		if (moveTowardScript != null) 
+		{
+			moveTowardScript.enabled = false;
 		}
 
 		// -- Moving
@@ -108,6 +116,11 @@ public class EnemyScript : MonoBehaviour
 			moveScript.enabled = true;
 		}
 
+		if (moveTowardScript != null) 
+		{
+			moveTowardScript.enabled = true;
+		}
+
 		// -- Moving
 		if (soldiermoveScript != null) 
 		{
@@ -134,6 +147,17 @@ public class EnemyScript : MonoBehaviour
 		if (coliderComponent != null) 
 		{
 			coliderComponent.enabled = false;
+		}
+
+		if (moveTowardScript != null) 
+		{
+			moveTowardScript.enabled = false;
+		}
+
+		// -- Moving
+		if (moveScript != null) 
+		{
+			moveScript.enabled = false;
 		}
 
 		// -- Shooting
