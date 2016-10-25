@@ -19,7 +19,7 @@ public class VeilAlphaScript : MonoBehaviour {
 		
 		}
 
-	}
+
 
 	void OnCollisionEnter2D (Collision2D Coll) {
 

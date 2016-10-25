@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour {
 
     private CharacterController2D Controller;
 	private AnimationController2D Animator;
+	private Transform weapon;
     private Vector3 ZeroVector = new Vector3(0, 0, 0);
 
     void Start()
@@ -25,6 +26,7 @@ public class PlayerScript : MonoBehaviour {
         Controller = gameObject.GetComponent<CharacterController2D>();
         mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
 		Animator = gameObject.GetComponent<AnimationController2D> ();
+		weapon = this.gameObject.transform.GetChild (1);
     }
 
     void Update()
@@ -39,6 +41,20 @@ public class PlayerScript : MonoBehaviour {
 
 			if (Controller.isGrounded) {
 				Animator.setAnimation ("WalkAnimation");
+
+				if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+				{
+					Animator.setFacing ("Right");
+					weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+					weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+
+				}
+				else
+				{
+					Animator.setFacing("Left");
+					weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+				}
 			}
 
 			//Animator.setFacing ("Left");
@@ -49,20 +65,64 @@ public class PlayerScript : MonoBehaviour {
 			velocity.x = walkSpeed;
 			if (Controller.isGrounded) {
 				Animator.setAnimation ("WalkAnimation");
-			}
 
-			//Animator.setFacing ("Right");
+				if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+				{
+					Animator.setFacing ("Right");
+					weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+					weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+
+				}
+				else
+				{
+					Animator.setFacing("Left");
+					weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+				}
+			}
+				
+
 
 		} 
 		else {
-			Animator.setAnimation ("PlayerIdle");
+			Animator.setAnimation ("NewIdle");
+
+			if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+			{
+				Animator.setFacing ("Right");
+				weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+
+			}
+			else
+			{
+				Animator.setFacing("Left");
+				weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+				weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
 		}
 
         if (Input.GetKeyDown("space") && Controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
-			Animator.setAnimation ("PlayerIdle");
+			Animator.setAnimation ("NewIdle");
+
+			if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+			{
+				Animator.setFacing ("Right");
+				weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+				weapon.position = new Vector3(this.gameObject.transform.position.x -0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+
+			}
+			else
+			{
+				Animator.setFacing("Left");
+				weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+				weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
         }
+
+
 
         velocity += hookshotAdjust;
 
