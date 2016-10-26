@@ -5,14 +5,20 @@ public class HealthScript : MonoBehaviour
 {
 
     public int hp = 2;
+	public int maxHp = 5;
     public bool isEnemy = true;
+	public bool isPlatform = false;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
         if (shot != null)
         {
-            if (shot.enemyShot != isEnemy)
+			if (isPlatform) 
+			{
+				Destroy (shot.gameObject);
+			}
+            else if (shot.enemyShot != isEnemy)
             {
                 hp -= shot.damage;
                 Destroy(shot.gameObject);

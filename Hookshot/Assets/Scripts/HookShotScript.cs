@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Prime31;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class HookShotScript : MonoBehaviour {
 
     //Player aspects
@@ -18,8 +19,6 @@ public class HookShotScript : MonoBehaviour {
     public float maxDistanceFromPlayer = 1;
     //distance at which hook will snap back to origin on retract
     public float minRetractDistance = 10;
-    //distance at which hook will consider the player successfully pulled to target
-    public float minLatchRetractDistance = 2;
 
     //unit vector in which it was aimed
     private Vector3 direction;
@@ -102,7 +101,7 @@ public class HookShotScript : MonoBehaviour {
         {
             //direction is now directed to the player
             direction = playerScript.transform.position - transform.position;
-            
+
 
             if (direction.magnitude < minRetractDistance)
             {
@@ -120,21 +119,13 @@ public class HookShotScript : MonoBehaviour {
 
             handOffDirection.z = 0;
 
-            if (handOffDirection.magnitude < minLatchRetractDistance)
-            {
-                ResetHookshot();
-            }
-            else
-            {
-                handOffDirection.Normalize();
+            //handOffDirection.Normalize();
 
-                handOffDirection.z = transform.position.z;
+            handOffDirection.z = transform.position.z;
 
-                handOffDirection *= retractSpeed;
+            handOffDirection *= retractSpeed;
 
-                playerScript.hookshotAdjust = handOffDirection;
-                Debug.Log(handOffDirection.ToString());
-            }
+            playerScript.hookshotAdjust = handOffDirection;
         }
         else
         {
@@ -146,7 +137,14 @@ public class HookShotScript : MonoBehaviour {
     {
         if (collider.gameObject.tag == "Hookable")
         {
-            latched = true;
+            if (!blocked)
+            {
+                latched = true;
+            }
+        }
+        else
+        {
+            blocked = true;
         }
     }
 
