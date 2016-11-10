@@ -149,11 +149,6 @@ public class EnemyScript : MonoBehaviour
 			coliderComponent.enabled = false;
 		}
 
-		if (moveTowardScript != null) 
-		{
-			moveTowardScript.enabled = false;
-		}
-
 		// -- Moving
 		if (moveScript != null) 
 		{

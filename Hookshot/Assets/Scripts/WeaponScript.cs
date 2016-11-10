@@ -74,6 +74,11 @@ public class WeaponScript : MonoBehaviour
         {
             Shoot(false);
         }
+
+		if (enemyWeapon)
+		{
+			Shoot (true);
+		}
     }
 
     /// <summary>
