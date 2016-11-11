@@ -23,7 +23,7 @@ public class WeaponScript : MonoBehaviour
     public bool enemyWeapon;
 
     /// <summary>
-    /// Whether or not the weapon tracks an object
+    /// Whether or not the weapon tracks the player
     /// </summary>
     public bool tracksObject;
 
@@ -56,6 +56,11 @@ public class WeaponScript : MonoBehaviour
     void Start()
     {
         shotCooldown = 0f;
+
+		if (tracksObject) 
+		{
+			objectToTrack = GameObject.FindGameObjectWithTag ("Player");
+		}
     }
 	
 	// Update is called once per frame
@@ -112,6 +117,12 @@ public class WeaponScript : MonoBehaviour
             {
                 movement.direction = shot.transform.right;
             }
+
+			MoveTowardScript moveToward = shot.gameObject.GetComponent<MoveTowardScript> ();
+			if (moveToward != null) 
+			{
+				moveToward.objectToMoveTowards = GameObject.FindGameObjectWithTag ("Player");
+			}
 
         }
     }

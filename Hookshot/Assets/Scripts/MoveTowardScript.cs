@@ -6,7 +6,7 @@ public class MoveTowardScript : MonoBehaviour {
 	/// <summary>
 	/// The speed that the object will move with
 	/// </summary>
-	public Vector2 acceleration;
+	private Vector2 acceleration;
 
 	public float accelerationConstant;
 
@@ -20,33 +20,87 @@ public class MoveTowardScript : MonoBehaviour {
 	/// </summary>
 	public Vector2 velocity = new Vector2(0f, 0f);
 
+	public Vector2 speed;
+
 	public GameObject objectToMoveTowards;
+
+	public bool AcceleratesTowardObject;
+
+	public bool MatchXPosition;
+
+	public bool MatchYPosition;
 
 	// Update is called once per frame
 	void Update () {
-		//Gets the position of the object to accelerate towards
-		Vector3 objPos = objectToMoveTowards.transform.position;
 
-		//The distance in the x and y axises from the object to chase to this object
-		float yDif = objPos.y - transform.position.y;
-		float xDif = objPos.x - transform.position.x;
+		if (AcceleratesTowardObject) {
+			//Gets the position of the object to accelerate towards
+			Vector3 objPos = objectToMoveTowards.transform.position;
 
-		//The angle of the vector (in RADIANS) pointing from this object to the object to chase
-		float angleOfDirectionVector = Mathf.Atan2 (yDif, xDif);
+			//The distance in the x and y axises from the object to chase to this object
+			float yDif = objPos.y - transform.position.y;
+			float xDif = objPos.x - transform.position.x;
 
-		//Set the direction
-		direction = new Vector2 (Mathf.Cos (angleOfDirectionVector), Mathf.Sin(angleOfDirectionVector));
+			//The angle of the vector (in RADIANS) pointing from this object to the object to chase
+			float angleOfDirectionVector = Mathf.Atan2 (yDif, xDif);
 
-		//Set the acceleration vector 
-		acceleration = new Vector2(accelerationConstant * direction.x, accelerationConstant * direction.y);
+			//Set the direction
+			direction = new Vector2 (Mathf.Cos (angleOfDirectionVector), Mathf.Sin (angleOfDirectionVector));
 
-		acceleration *= Time.deltaTime;
+			//Set the acceleration vector 
+			acceleration = new Vector2 (accelerationConstant * direction.x, accelerationConstant * direction.y);
 
-		velocity = new Vector2(velocity.x + acceleration.x, velocity.y + acceleration.y);
+			acceleration *= Time.deltaTime;
 
-		transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+			velocity = new Vector2 (velocity.x + acceleration.x, velocity.y + acceleration.y);
 
-		//velocity *= Time.deltaTime;
-		transform.Translate(velocity, Space.World);
+			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (velocity.y, velocity.x) * Mathf.Rad2Deg);
+
+			transform.Translate (velocity, Space.World);
+		} 
+
+		else if (MatchXPosition) 
+		{
+			//Gets the position of the object to accelerate towards
+			Vector3 objPos = objectToMoveTowards.transform.position;
+
+			//The distance in the x and y axises from the object to chase to this object
+			float xDif = objPos.x - transform.position.x;
+
+			if (xDif < 0) {
+				direction = new Vector2 (-1, 0);
+			} else if (xDif > 0) {
+				direction = new Vector2 (1, 0);
+			} else {
+				direction = new Vector2 (0, 0);
+			}
+
+			velocity = new Vector2 (speed.x * direction.x, 0);
+
+			velocity *= Time.deltaTime;
+			transform.Translate (velocity, Space.World);
+		} 
+
+		else if (MatchYPosition) 
+		{
+			//Gets the position of the object to accelerate towards
+			Vector3 objPos = objectToMoveTowards.transform.position;
+
+			//The distance in the x and y axises from the object to chase to this object
+			float yDif = objPos.y - transform.position.y;
+
+			if (yDif < -0) {
+				direction = new Vector2 (0, -1);
+			} else if (yDif > 0) {
+				direction = new Vector2 (0, 1);
+			} else {
+				direction = new Vector2 (0, 0);
+			}
+
+			velocity = new Vector2 (0, speed.y * direction.y);
+
+			velocity *= Time.deltaTime;
+			transform.Translate (velocity, Space.World);
+		}
 	}
 }

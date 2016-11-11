@@ -142,7 +142,7 @@ public class EnemyScript : MonoBehaviour
 	{
 		hasSpawn = false;
 
-		// Disable everything
+		// Disable collider movescript and weapon
 		// -- collider
 		if (coliderComponent != null) 
 		{

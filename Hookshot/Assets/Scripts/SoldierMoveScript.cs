@@ -23,7 +23,7 @@ public class SoldierMoveScript : MonoBehaviour {
     /// </summary>
     public float patrolRate;
 
-    public float patrolCooldown;
+	private float patrolCooldown;
 
     void Start()
     {
