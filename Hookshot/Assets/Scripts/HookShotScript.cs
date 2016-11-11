@@ -55,12 +55,16 @@ public class HookShotScript : MonoBehaviour {
 
             Vector3 mousePOS = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            mousePOS.z = 0;
+			float xDif = playerScript.transform.position.x - mousePOS.x;
+			float yDif = playerScript.transform.position.y - mousePOS.y;
 
-            //make a normalized vector for direction
-            direction = mousePOS - playerScript.transform.position;
-            direction.Normalize();
-            direction.z = transform.position.z;
+			float angleOfDirectionVector = Mathf.Atan2 (yDif, xDif);
+
+			//Set the direction
+			direction = new Vector3 (Mathf.Cos (angleOfDirectionVector), Mathf.Sin (angleOfDirectionVector), 0);
+			direction *= -1;
+
+			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (yDif, xDif) * Mathf.Rad2Deg);
         }
 
         if (fired && Input.GetButtonDown("Jump") && latched)
@@ -156,7 +160,7 @@ public class HookShotScript : MonoBehaviour {
 
         velocity *= Time.deltaTime;
 
-        transform.Translate(velocity, Space.Self);
+        transform.Translate(velocity, Space.World);
     }
 
     private void ResetHookshot()
