@@ -6,6 +6,7 @@ using Prime31;
 public class PlayerScript : MonoBehaviour {
 
     public GameObject mainCamera;
+    public GameObject backgroundScripts;
 
     //movement settings
     public float walkSpeed;
@@ -42,7 +43,7 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void Update()
-	{
+    {
         //if you are currently latched, retract the player to the hook
         if (hookLatched)
         {
@@ -62,7 +63,7 @@ public class PlayerScript : MonoBehaviour {
     {
         previousHookshotAdjust = hookshotAdjust;
         hasMomentum = true;
-		Controller.move (hookshotAdjust.normalized * Time.deltaTime * hookRetractSpeed);
+        Controller.move(hookshotAdjust.normalized * Time.deltaTime * hookRetractSpeed);
     }
 
     private void HookMomentumHandler()
@@ -140,7 +141,7 @@ public class PlayerScript : MonoBehaviour {
             }
         }
 
-		if (Input.GetKeyDown("space")) //&& Controller.isGrounded)
+        if (Input.GetKeyDown("space") && Controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
             Animator.setAnimation("NewIdle");
@@ -169,5 +170,12 @@ public class PlayerScript : MonoBehaviour {
         }
 
         Controller.move(velocity * Time.deltaTime);
+    }
+
+    public void OnDestroy()
+    {
+        //play death animation
+        transform.parent.gameObject.AddComponent<DeathMenuScript>();
+
     }
 }

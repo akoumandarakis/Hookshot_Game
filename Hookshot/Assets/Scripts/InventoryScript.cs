@@ -21,9 +21,9 @@ public class InventoryScript : MonoBehaviour {
 			{
 				health.hp += pickupInfo.AmountOfHealth;
 
-				if (health.hp > health.maxHp) 
+				if (health.hp > health.maxHP) 
 				{
-					health.hp = health.maxHp;
+					health.hp = health.maxHP;
 				}
 
 				Destroy(pickupInfo.gameObject);
