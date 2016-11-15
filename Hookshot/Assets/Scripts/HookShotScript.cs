@@ -147,15 +147,14 @@ public class HookShotScript : MonoBehaviour {
 			if (!blocked) {
 				latched = true;
 			}
-		} 
-		else if (collider.gameObject.tag != "Player") 
+		} else if (collider.gameObject.tag != "Player" && collider.gameObject.tag != "HookshotSeeThrough") 
 		{
 			blocked = true;
 		} 
 		else if (collider.gameObject.tag == "Player" && latched) 
 		{
 			blocked = true;
-		}
+		} 
     }
 
     private void Move()
