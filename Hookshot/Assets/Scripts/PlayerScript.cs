@@ -143,22 +143,18 @@ public class PlayerScript : MonoBehaviour {
 
         if (Input.GetKeyDown("space") && Controller.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
-            Animator.setAnimation("NewIdle");
-
-            if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
-            {
-                Animator.setFacing("Right");
-                weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
-                weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-            }
-            else
-            {
-                Animator.setFacing("Left");
-                weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
-                weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-            }
+			velocity.y = Jump (velocity);
         }
+
+		if (Input.GetAxis ("Vertical") < 0 && hookLatched) 
+		{
+			velocity.y = walkSpeed * -0.5f;
+		}
+
+		if (Input.GetAxis ("Vertical") > 0 && hookLatched) 
+		{
+			velocity.y = walkSpeed * 0.5f;
+		}
 
         if (hookLatched)
         {
@@ -178,4 +174,24 @@ public class PlayerScript : MonoBehaviour {
         transform.parent.gameObject.AddComponent<DeathMenuScript>();
 
     }
+
+	public float Jump(Vector3 velocity)
+	{
+		velocity.y = Mathf.Sqrt(5f * jumpHeight * -gravity);
+		Animator.setAnimation("NewIdle");
+
+		if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+		{
+			Animator.setFacing("Right");
+			weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+			weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+		}
+		else
+		{
+			Animator.setFacing("Left");
+			weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+			weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+		}
+		return velocity.y;
+	}
 }

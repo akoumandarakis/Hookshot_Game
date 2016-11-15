@@ -43,6 +43,8 @@ public class HookShotScript : MonoBehaviour {
         fired = false;
         latched = false;
         blocked = false;
+
+		playerScript.hookRetractSpeed = retractSpeed;
     }
 	
 	// Update is called once per frame
@@ -50,6 +52,7 @@ public class HookShotScript : MonoBehaviour {
 
         if (!fired && Input.GetButtonDown("Fire2"))
         {
+			this.gameObject.layer = LayerMask.NameToLayer ("Trigger");
             fired = true;
             transform.parent = null;
 
@@ -69,6 +72,7 @@ public class HookShotScript : MonoBehaviour {
 
         if (fired && Input.GetButtonDown("Jump") && latched)
         {
+			playerController.velocity.y = playerScript.Jump (playerController.velocity);
             ResetHookshot();
         }
 
@@ -139,17 +143,19 @@ public class HookShotScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Hookable")
-        {
-            if (!blocked)
-            {
-                latched = true;
-            }
-        }
-        else
-        {
-            blocked = true;
-        }
+		if (collider.gameObject.tag == "Hookable") {
+			if (!blocked) {
+				latched = true;
+			}
+		} 
+		else if (collider.gameObject.tag != "Player") 
+		{
+			blocked = true;
+		} 
+		else if (collider.gameObject.tag == "Player" && latched) 
+		{
+			blocked = true;
+		}
     }
 
     private void Move()
@@ -174,6 +180,7 @@ public class HookShotScript : MonoBehaviour {
         blocked = false;
         fired = false;
         latched = false;
+		this.gameObject.layer = LayerMask.NameToLayer ("Default");
     }
 
 }

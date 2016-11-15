@@ -56,11 +56,14 @@
      <Compile Include="Assets\Scripts\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\CharacterController2D.cs" />
      <Compile Include="Assets\Scripts\Crane movement\hookablesMove.cs" />
+     <Compile Include="Assets\Scripts\DeathMenuScript.cs" />
      <Compile Include="Assets\Scripts\DoorScript.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\GUIScript.cs" />
      <Compile Include="Assets\Scripts\HealthScript.cs" />
      <Compile Include="Assets\Scripts\HookShotScript.cs" />
      <Compile Include="Assets\Scripts\InventoryScript.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\MoveTowardScript.cs" />
      <Compile Include="Assets\Scripts\PickupInfoScript.cs" />
