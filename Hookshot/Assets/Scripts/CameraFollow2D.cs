@@ -11,6 +11,9 @@ public class CameraFollow2D : MonoBehaviour
 	public float lookAheadReturnSpeed = 0.5f;
 	public float lookAheadMoveThreshold = 0.1f;
 
+	public float offset = 1;
+	public float cameraSpeed = 2;
+
 	public bool platformSnap = true;
 
     private float m_OffsetZ;
@@ -19,6 +22,8 @@ public class CameraFollow2D : MonoBehaviour
     private Vector3 m_LookAheadPos;
 
 	private Transform currentTarget;
+
+	private GameObject targetObject;
 
 
     // Use this for initialization
@@ -47,7 +52,19 @@ public class CameraFollow2D : MonoBehaviour
             }
 
             Vector3 aheadTargetPos = currentTarget.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
-            Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
+			Vector3 newPos = new Vector3 ();
+
+			if (targetObject != null) 
+			{
+				if (targetObject.GetComponent<PlayerScript> ().GetDirectionAiming () == "Right") 
+				{
+					newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + offset, aheadTargetPos.y, aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
+				} 
+				else
+				{
+					newPos = Vector3.SmoothDamp(transform.position, new Vector3 (aheadTargetPos.x - offset, aheadTargetPos.y, aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
+				}
+			}
 
             transform.position = newPos;
 
@@ -57,6 +74,7 @@ public class CameraFollow2D : MonoBehaviour
 
 	public void startCameraFollow (GameObject newTarget){
 		currentTarget = newTarget.transform;
+		targetObject = newTarget;
 		m_LastTargetPosition = currentTarget.position;
         m_OffsetZ = transform.position.z;
         transform.parent = null;
@@ -64,7 +82,6 @@ public class CameraFollow2D : MonoBehaviour
 	
 	
 	public void stopCameraFollow (){
-
 		currentTarget = this.transform;
 		m_LastTargetPosition = currentTarget.position;
 		m_OffsetZ = 0;

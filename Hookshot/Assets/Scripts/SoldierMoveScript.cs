@@ -18,6 +18,10 @@ public class SoldierMoveScript : MonoBehaviour {
     /// </summary>
     private Vector3 velocity;
 
+	public bool moveInXDirection;
+
+	public bool moveInYDirection;
+
     /// <summary>
     /// Time before the soldier starts moving the opposite direction
     /// </summary>
@@ -40,8 +44,16 @@ public class SoldierMoveScript : MonoBehaviour {
         }
         else
         {
-            direction = new Vector2(direction.x * -1, direction.y);
-            patrolCooldown = patrolRate;
+			if (moveInXDirection) 
+			{
+				direction = new Vector2 (direction.x * -1, direction.y);
+				patrolCooldown = patrolRate;
+			} 
+			else if (moveInYDirection) 
+			{
+				direction = new Vector2(direction.x, direction.y * -1);
+				patrolCooldown = patrolRate;	
+			}
         }
         
         //Transforms the object based on its velocity

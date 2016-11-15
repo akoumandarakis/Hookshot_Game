@@ -194,4 +194,13 @@ public class PlayerScript : MonoBehaviour {
 		}
 		return velocity.y;
 	}
+
+	public string GetDirectionAiming()
+	{
+		if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270)) {
+			return "Right";
+		} else {
+			return "Left";
+		} 
+	}
 }
