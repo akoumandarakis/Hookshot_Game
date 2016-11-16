@@ -33,6 +33,8 @@ public class HookShotScript : MonoBehaviour {
     private Vector3 velocity;
     private Vector3 ZeroVector = new Vector3(0, 0, 0);
 
+	private SpriteRenderer visibility;
+
     // Use this for initialization
     void Start () {
         playerScript = GetComponentInParent<PlayerScript>();
@@ -45,6 +47,11 @@ public class HookShotScript : MonoBehaviour {
         blocked = false;
 
 		playerScript.hookRetractSpeed = retractSpeed;
+
+		visibility = GetComponentInParent<SpriteRenderer> ();
+		if (visibility != null) {
+			visibility.enabled = false;
+		}
     }
 	
 	// Update is called once per frame
@@ -53,6 +60,9 @@ public class HookShotScript : MonoBehaviour {
         if (!fired && Input.GetButtonDown("Fire2"))
         {
 			this.gameObject.layer = LayerMask.NameToLayer ("Trigger");
+			if (visibility != null) {
+				visibility.enabled = true;
+			}
             fired = true;
             transform.parent = null;
 
@@ -70,11 +80,14 @@ public class HookShotScript : MonoBehaviour {
 			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (yDif, xDif) * Mathf.Rad2Deg);
         }
 
-        if (fired && Input.GetButtonDown("Jump") && latched)
-        {
+		if (fired && Input.GetButtonDown ("Jump") && latched && !playerScript.IsZeroG) {
 			playerController.velocity.y = playerScript.Jump (playerController.velocity);
-            ResetHookshot();
-        }
+			ResetHookshot ();
+		} 
+		else if (fired && Input.GetButtonDown ("Jump") && latched) 
+		{
+			ResetHookshot ();
+		}
 
         if (fired)
         {
@@ -180,6 +193,9 @@ public class HookShotScript : MonoBehaviour {
         fired = false;
         latched = false;
 		this.gameObject.layer = LayerMask.NameToLayer ("Default");
+		if (visibility != null) {
+			visibility.enabled = false;
+		}
     }
 
 }

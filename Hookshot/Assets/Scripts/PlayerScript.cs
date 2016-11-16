@@ -33,6 +33,9 @@ public class PlayerScript : MonoBehaviour {
     private Vector3 ZeroVector = new Vector3(0, 0, 0);
     private bool hasMomentum;
 
+	[HideInInspector]
+	public bool IsZeroG;
+
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
@@ -55,8 +58,15 @@ public class PlayerScript : MonoBehaviour {
             HookMomentumHandler();
         }
 
-        //always take player input
-        StandardMovement();
+		//always take player input
+		if (IsZeroG) 
+		{
+			ZeroGMovement();
+		} 
+		else 
+		{
+			StandardMovement();
+		}
     }
 
     private void HookMovement()
@@ -167,6 +177,80 @@ public class PlayerScript : MonoBehaviour {
 
         Controller.move(velocity * Time.deltaTime);
     }
+
+	public void ZeroGMovement()
+	{
+		Animator.setAnimation("NewIdle");
+
+		Vector3 velocity = Controller.velocity;
+		Vector3 acceleration = new Vector3();
+		Vector2 direction = new Vector2 (0,0);
+
+		if (Input.GetAxis("Horizontal") < 0)
+		{
+			direction = new Vector2 (-1, direction.y); 
+
+			if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+			{
+				weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+				Animator.setFacing ("Right");
+				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
+			else
+			{
+				weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+				Animator.setFacing("Left");
+				weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
+		}
+
+		if (Input.GetAxis("Horizontal") > 0)
+		{
+			direction = new Vector2 (1, direction.y); 
+
+			if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
+			{
+				weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
+				Animator.setFacing ("Right");
+				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
+			else
+			{
+				weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
+				Animator.setFacing("Left");
+				weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			}
+		}
+
+
+
+		if (Input.GetAxis ("Vertical") < 0) 
+		{
+			direction = new Vector2 (direction.x, -1); 
+		}
+
+		if (Input.GetAxis ("Vertical") > 0) 
+		{
+			direction = new Vector2 (direction.x, 1); 
+		}
+
+		if (hookLatched)
+		{
+			HookMovement();
+		}
+
+		Debug.Log (direction);
+
+		acceleration = new Vector3 (walkSpeed * direction.x, walkSpeed * direction.y);
+
+		Debug.Log (acceleration);
+
+		acceleration *= Time.deltaTime;
+
+		velocity = new Vector3 (velocity.x + acceleration.x, velocity.y + acceleration.y);
+
+		Controller.move(velocity *= Time.deltaTime);
+	}
 
     public void OnDestroy()
     {
