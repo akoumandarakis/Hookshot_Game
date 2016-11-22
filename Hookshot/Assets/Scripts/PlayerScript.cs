@@ -29,12 +29,23 @@ public class PlayerScript : MonoBehaviour {
 
     private CharacterController2D Controller;
 	private AnimationController2D Animator;
+	private GameObject gun;
 	private Transform weapon;
+	private SpriteRenderer weaponRenderer;
     private Vector3 ZeroVector = new Vector3(0, 0, 0);
     private bool hasMomentum;
 
 	[HideInInspector]
 	public bool IsZeroG;
+	/// <summary>
+	/// Used to determine camera movement
+	/// </summary>
+	private string currentDirectionAiming = "Right";
+
+	/// <summary>
+	/// Used to determine animation
+	/// </summary>
+	private string directionAiming = "Right";
 
     void Start()
     {
@@ -42,6 +53,8 @@ public class PlayerScript : MonoBehaviour {
         mainCamera.GetComponent<CameraFollow2D>().startCameraFollow(this.gameObject);
 		Animator = gameObject.GetComponent<AnimationController2D> ();
 		weapon = this.gameObject.transform.GetChild (1);
+		//weapon.GetComponent<SpriteRenderer> ();
+		weaponRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
         hasMomentum = false;
     }
 
@@ -87,68 +100,71 @@ public class PlayerScript : MonoBehaviour {
 
         velocity.x = 0;
 
+		if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270)) {
+			directionAiming = "Right";
+		} else {
+			directionAiming = "Left";
+		}
+
+		if (directionAiming == "Right") {
+			weapon.localScale = new Vector3 (1, 1, weapon.localScale.z);
+		} else {
+			weapon.localScale = new Vector3(1, -1, weapon.localScale.z);
+		}
+
+		//Moving Left
         if (Input.GetAxis("Horizontal") < 0)
         {
             velocity.x = walkSpeed * -1;
 
             if (Controller.isGrounded)
             {
-                Animator.setAnimation("WalkAnimation");
+				if (directionAiming == "Left") {
+					Animator.setAnimation ("Walk_Left");
+					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.05f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+					weaponRenderer.sortingOrder = -1;
 
-                if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
-                {
-                    Animator.setFacing("Right");
-                    weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
-                    weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+				} else {
+					Animator.setAnimation("Walk_Right");
+					weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+					weaponRenderer.sortingOrder = 1;
+				}
 
-                }
-                else
-                {
-                    Animator.setFacing("Left");
-                    weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
-                    weapon.position = new Vector3(this.gameObject.transform.position.x - 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-                }
             }
         }
+		//Moving Right
         else if (Input.GetAxis("Horizontal") > 0)
         {
             velocity.x = walkSpeed;
+			//Animator.setFacing("Right");
 
             if (Controller.isGrounded)
             {
-                Animator.setAnimation("WalkAnimation");
+				if (directionAiming == "Left") {
+					Animator.setAnimation ("Walk_Left");
+					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.05f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+					weaponRenderer.sortingOrder = -1;
 
-                if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
-                {
-                    Animator.setFacing("Right");
-                    weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
-                    weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-                }
-                else
-                {
-                    Animator.setFacing("Left");
-                    weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
-                    weapon.position = new Vector3(this.gameObject.transform.position.x - 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-                }
+				} else {
+					Animator.setAnimation("Walk_Right");
+					weapon.position = new Vector3(this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+					weaponRenderer.sortingOrder = 1;
+				}
             }
         }
+		//Standing Still
         else
         {
             Animator.setAnimation("NewIdle");
 
-            if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270))
-            {
-                Animator.setFacing("Right");
-                weapon.localScale = new Vector3(1, 1, weapon.localScale.z);
-                weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+			if (directionAiming == "Left") {
+				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+				weaponRenderer.sortingOrder = -1;
 
-            }
-            else
-            {
-                Animator.setFacing("Left");
-                weapon.localScale = new Vector3(-1, -1, weapon.localScale.z);
-                weapon.position = new Vector3(this.gameObject.transform.position.x + 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-            }
+			} else {
+				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+				weaponRenderer.sortingOrder = 1;
+			}
         }
 
         if (Input.GetKeyDown("space") && Controller.isGrounded)
@@ -281,10 +297,35 @@ public class PlayerScript : MonoBehaviour {
 
 	public string GetDirectionAiming()
 	{
-		if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270)) {
-			return "Right";
-		} else {
-			return "Left";
+		if (currentDirectionAiming == "Right") 
+		{
+			if ((weapon.transform.eulerAngles.z < 110 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 250)) 
+			{
+				currentDirectionAiming = "Right";
+				return "Right";
+			} 
+			else 
+			{
+				currentDirectionAiming = "Left";
+				return "Left";
+			} 
 		} 
+		else if (currentDirectionAiming == "Left") 
+		{
+			if ((weapon.transform.eulerAngles.z > 70 && weapon.transform.eulerAngles.z <= 180) || (weapon.transform.eulerAngles.z >= 180 && weapon.transform.eulerAngles.z < 290)) 
+			{
+				currentDirectionAiming = "Left";
+				return "Left";
+			} 
+			else 
+			{
+				currentDirectionAiming = "Right";
+				return "Right";
+			} 
+		} 
+		else 
+		{
+			return "Right";
+		}
 	}
 }

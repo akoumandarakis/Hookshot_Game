@@ -115,5 +115,6 @@
 'Assets/Scripts/SoldierMoveScript.cs'
 'Assets/Scripts/VeilAlphaScript.cs'
 'Assets/Scripts/WeaponScript.cs'
+'Assets/Scripts/ZeroGAreaScript.cs'
 -r:'/Users/Shared/Unity/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Users/Shared/Unity/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
