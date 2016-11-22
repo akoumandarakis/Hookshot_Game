@@ -10,7 +10,7 @@ public class LightColorPick : MonoBehaviour {
 	public bool White;
 	SpriteRenderer Rend;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Rend = gameObject.GetComponent<SpriteRenderer> ();
 		if (Red == true){
 			Rend.color = new Color (.88f, 0.066f, 0.082f, 1.0f);
