@@ -52,6 +52,8 @@ public class WeaponScript : MonoBehaviour
     /// </summary>
     private Vector3 objPos;
 
+	private bool buttonDown;
+
     // Use this for initialization
     void Start()
     {
@@ -75,10 +77,18 @@ public class WeaponScript : MonoBehaviour
         }
 			
         //If the left mouse button is clicked and it's a player's weapon, fire the weapon 
-        if (Input.GetButtonDown("Fire1") && !enemyWeapon)
+		if (Input.GetButtonDown("Fire1") && !enemyWeapon)
         {
-            Shoot(false);
+			buttonDown = true;
         }
+
+		if (Input.GetButtonUp ("Fire1")) {
+			buttonDown = false;
+		}
+
+		if (buttonDown) {
+			Shoot (false);
+		}
 
 		if (enemyWeapon)
 		{
@@ -100,8 +110,10 @@ public class WeaponScript : MonoBehaviour
 
             //Create a new shot at the position of the weapon
 			var shot = Instantiate(shotPrefab) as Transform;
-            shot.position = new Vector3(transform.position.x, transform.position.y - 0.04f, transform.position.z);
-            shot.eulerAngles = transform.eulerAngles;
+			Debug.Log (this.transform.right);
+			shot.position = new Vector3(transform.position.x + this.transform.right.x/4, transform.position.y + this.transform.right.y/4 - 0.04f, transform.position.z);
+			Debug.Log (shot.position);
+			shot.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(-10,10));
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 

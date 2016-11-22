@@ -121,7 +121,7 @@ public class PlayerScript : MonoBehaviour {
             {
 				if (directionAiming == "Left") {
 					Animator.setAnimation ("Walk_Left");
-					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.02f, this.gameObject.transform.position.y - 0.03f, this.gameObject.transform.position.z);
+					weapon.position = new Vector3(this.gameObject.transform.position.x - 0.02f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
 					weaponRenderer.sortingOrder = -1;
 
 				} else {
@@ -151,7 +151,7 @@ public class PlayerScript : MonoBehaviour {
 			if (Controller.isGrounded) {
 				if (directionAiming == "Left") {
 					Animator.setAnimation ("Walk_Left_Reverse");
-					weapon.position = new Vector3 (this.gameObject.transform.position.x - 0.02f, this.gameObject.transform.position.y - 0.03f, this.gameObject.transform.position.z);
+					weapon.position = new Vector3 (this.gameObject.transform.position.x - 0.02f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
 					weaponRenderer.sortingOrder = -1;
 
 				} else {
@@ -229,16 +229,22 @@ public class PlayerScript : MonoBehaviour {
 
 	public void ZeroGMovement()
 	{
-		Animator.setAnimation("NewIdle");
-
 		Vector3 velocity = Controller.velocity;
 		Vector3 acceleration = new Vector3();
 		Vector2 direction = new Vector2 (0,0);
 
 		if ((weapon.transform.eulerAngles.z < 90 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 270)) {
 			directionAiming = "Right";
+
+			Animator.setAnimation ("Jump_Right");
+			weapon.position = new Vector3 (this.gameObject.transform.position.x + 0.04f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+			weaponRenderer.sortingOrder = 1;
 		} else {
 			directionAiming = "Left";
+
+			Animator.setAnimation ("Jump_Left");
+			weapon.position = new Vector3 (this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+			weaponRenderer.sortingOrder = -1;
 		}
 
 		if (directionAiming == "Right") {
@@ -250,32 +256,12 @@ public class PlayerScript : MonoBehaviour {
 		if (Input.GetAxis("Horizontal") < 0)
 		{
 			direction = new Vector2 (-1, direction.y); 
-
-			if (directionAiming == "Left") {
-				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-				weaponRenderer.sortingOrder = -1;
-
-			} else {
-				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-				weaponRenderer.sortingOrder = 1;
-			}
 		}
 
 		if (Input.GetAxis("Horizontal") > 0)
 		{
 			direction = new Vector2 (1, direction.y); 
-
-			if (directionAiming == "Left") {
-				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-				weaponRenderer.sortingOrder = -1;
-
-			} else {
-				weapon.position = new Vector3(this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
-				weaponRenderer.sortingOrder = 1;
-			}
 		}
-
-
 
 		if (Input.GetAxis ("Vertical") < 0) 
 		{
