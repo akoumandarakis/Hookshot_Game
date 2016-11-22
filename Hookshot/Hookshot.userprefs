@@ -1,15 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraFollow2D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/InventoryScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/HookShotScript.cs" Line="155" Column="3" />
-      <File FileName="Assets/FloorGrate.cs" Line="1" Column="1" />
-      <File FileName="Assets/Prefabs/Lights/LightColor.cs" Line="1" Column="1" />
-      <File FileName="Assets/LightColorPick.cs" Line="1" Column="1" />
-      <File FileName="Assets/Prefabs/Lights/lightFlash.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SoldierMoveScript.cs" Line="56" Column="5" />
-      <File FileName="Assets/Scripts/CameraFollow2D.cs" Line="67" Column="5" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" Line="204" Column="5" />
+      <File FileName="Assets/Scripts/PickupInfoScript.cs" Line="36" Column="62" />
+      <File FileName="Assets/Scripts/WeaponScript.cs" Line="116" Column="42" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/InventoryScript.cs" Line="47" Column="93" />
+      <File FileName="Assets/Scripts/MoveScript.cs" Line="22" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

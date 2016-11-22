@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Creates a weapon that can generate shots
@@ -11,6 +11,18 @@ public class WeaponScript : MonoBehaviour
     /// The shot that will be fired by the weapon
     /// </summary>
     public Transform shotPrefab;
+
+	/// <summary>
+	/// The list of shot types that the weapon can fire and their ammo count
+	/// </summary>
+	public List<KeyValuePair<Transform, int>> shotTypes = new List<KeyValuePair<Transform, int>>();
+
+	/// <summary>
+	/// Whether or not the weapon can shoot different shot types
+	/// </summary>
+	public bool CanShootDifferentShots;
+
+	public int shotIndex = 0;
 
     /// <summary>
     /// The rate at which the weapon can fire
@@ -58,17 +70,24 @@ public class WeaponScript : MonoBehaviour
     void Start()
     {
         shotCooldown = 0f;
+		shotTypes.Add(new KeyValuePair<Transform, int>(shotPrefab, -1)); 
 
 		if (tracksObject) 
 		{
 			objectToTrack = GameObject.FindGameObjectWithTag ("Player");
 		}
+
+
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Update the rotation of the weapon
         updateRotation();
+
+		if (CanShootDifferentShots && shotTypes.Count > shotIndex) {
+			shotPrefab = shotTypes [shotIndex].Key;
+		}
 
         //Count down until next shot
         if (shotCooldown > 0)
@@ -84,6 +103,22 @@ public class WeaponScript : MonoBehaviour
 
 		if (Input.GetButtonUp ("Fire1")) {
 			buttonDown = false;
+		}
+
+		if (Input.GetAxis ("Button Press") > 0 && Input.GetButtonDown("Button Press")) {
+			shotIndex++;
+			if (shotIndex >= shotTypes.Count)
+			{
+				shotIndex = 0;
+			}
+		}
+
+		if (Input.GetAxis ("Button Press") < 0 && Input.GetButtonDown("Button Press")) {
+			shotIndex--;
+			if (shotIndex < 0)
+			{
+				shotIndex = shotTypes.Count - 1;
+			}
 		}
 
 		if (buttonDown) {
@@ -103,7 +138,7 @@ public class WeaponScript : MonoBehaviour
     public void Shoot(bool isEnemy)
     {
         //If the shot cooldown has reached 0
-		if (shotCooldown <= 0f)
+		if (shotCooldown <= 0f && (shotTypes[shotIndex].Value > 0 || shotTypes[shotIndex].Value < 0))
         {
             //Reset the shot cooldown
             shotCooldown = shotRate;
@@ -136,6 +171,8 @@ public class WeaponScript : MonoBehaviour
 				moveToward.objectToMoveTowards = GameObject.FindGameObjectWithTag ("Player");
 			}
 
+			int numberOfShots = shotTypes [shotIndex].Value - 1;
+			shotTypes [shotIndex] = new KeyValuePair<Transform, int>(shotTypes[shotIndex].Key, numberOfShots);
         }
     }
 
