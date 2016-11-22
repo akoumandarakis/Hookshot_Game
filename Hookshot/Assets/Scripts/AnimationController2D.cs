@@ -35,7 +35,7 @@ public class AnimationController2D : MonoBehaviour {
 		if (_animator != null && _animator.HasState(0,hash)){
 			//Check that we're not already playing the animation 
 			if ( animationName != _currentAnimation ) {
-				
+
 				//Set the animation to play in the animator
 				_animator.Play(hash);
 				

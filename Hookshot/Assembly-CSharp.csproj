@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\VeilAlphaScript.cs" />
      <Compile Include="Assets\Scripts\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\ZeroGAreaScript.cs" />
+     <Compile Include="Assets\Scripts\ZeroGSwitchScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Users/Shared/Unity/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
