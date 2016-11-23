@@ -53,6 +53,7 @@
      <Compile Include="Assets\Prefabs\Lights\lightFlash.cs" />
      <Compile Include="Assets\Scripts\AnimationController2D.cs" />
      <Compile Include="Assets\Scripts\BossScript.cs" />
+     <Compile Include="Assets\Scripts\BoxFloatingScript.cs" />
      <Compile Include="Assets\Scripts\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\CharacterController2D.cs" />
      <Compile Include="Assets\Scripts\Crane movement\hookablesMove.cs" />
@@ -74,6 +75,7 @@
      <Compile Include="Assets\Scripts\VeilAlphaScript.cs" />
      <Compile Include="Assets\Scripts\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\ZeroGAreaScript.cs" />
+     <Compile Include="Assets\Scripts\ZeroGSwitchScript.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

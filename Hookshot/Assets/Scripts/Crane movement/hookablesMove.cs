@@ -9,8 +9,10 @@ public class hookablesMove : MonoBehaviour {
 	GameObject Q;
 	GameObject Right;
 	GameObject Left;
+	GameObject Crane;
 	float direction;
 	GameObject player;
+	public float maxDistance;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +20,10 @@ public class hookablesMove : MonoBehaviour {
 		Q = transform.FindChild ("Q").gameObject;
 		Right = transform.FindChild ("right arrow").gameObject;
 		Left = transform.FindChild ("left arrow").gameObject;
+		Crane = transform.FindChild ("Crane").gameObject;
 		player = GameObject.FindGameObjectsWithTag("Player")[0];
+
+
 	}
 
 	// Update is called once per frame
@@ -38,12 +43,18 @@ public class hookablesMove : MonoBehaviour {
 			if (!Input.GetButton ("Button Press")) {
 				Q.SetActive (true);
 			}
-			if (Input.GetButton ("Button Press")) {
-				Debug.Log ("push button");
+			if (Input.GetButton ("Button Press") && Crane.transform.localPosition.x <= maxDistance && direction > 0f) {
 				Q.SetActive (false);
-
+				float currentLocation = Crane.transform.localPosition.x;
+				float deltax = Mathf.MoveTowards(currentLocation, 3.0f, Time.deltaTime);
+				Crane.transform.localPosition = new Vector3 (deltax, Crane.transform.localPosition.y, 0f);
 			}
-		
+			if (Input.GetButton ("Button Press") && Crane.transform.localPosition.x >= -maxDistance && direction <= 0f) {
+				Q.SetActive (false);
+				float currentLocation = Crane.transform.localPosition.x;
+				float deltax = Mathf.MoveTowards (currentLocation, -3.0f, Time.deltaTime);
+				Crane.transform.localPosition = new Vector3 (deltax, Crane.transform.localPosition.y, 0f);
+			}
 		}
 
 	}
