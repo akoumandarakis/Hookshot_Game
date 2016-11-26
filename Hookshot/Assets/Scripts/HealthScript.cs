@@ -10,11 +10,11 @@ public class HealthScript : MonoBehaviour
     public bool isEnemy = true;
 	public bool isPlatform = false;
 
-
     void Start()
     {
         maxHP = hp;
-    }
+				
+	}
 
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -34,7 +34,7 @@ public class HealthScript : MonoBehaviour
 
         if (hp <= 0)
         {
-            Destroy(gameObject);
+			Destroy(gameObject);
         }
     }
 }
