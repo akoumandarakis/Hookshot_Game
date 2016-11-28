@@ -79,10 +79,14 @@ public class HookShotScript : MonoBehaviour {
 
 			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (yDif, xDif) * Mathf.Rad2Deg);
         }
+        //else if (!fired && Input.GetButtonDown("Fire2"))
+        //{
+        //    blocked = true;
+        //}
 
-		if (fired && Input.GetButtonDown ("Jump") && latched && !playerScript.IsZeroG) {
-			playerController.velocity.y = playerScript.Jump (playerController.velocity);
-			ResetHookshot ();
+        if (fired && Input.GetButtonDown ("Jump") && latched && !playerScript.IsZeroG) {
+		playerController.velocity.y = playerScript.Jump (playerController.velocity);
+		ResetHookshot ();
 		} 
 		else if (fired && Input.GetButtonDown ("Jump") && latched) 
 		{
