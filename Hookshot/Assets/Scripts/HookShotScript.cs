@@ -167,8 +167,6 @@ public class HookShotScript : MonoBehaviour {
 		} else if (collider.gameObject.tag != "Player" && collider.gameObject.tag != "HookshotSeeThrough") 
 		{
 			blocked = true;
-			Debug.Log ("blocked");
-			Debug.Log (collider.gameObject.name);
 		} 
 		else if (collider.gameObject.tag == "Player" && latched) 
 		{
