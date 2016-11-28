@@ -145,10 +145,15 @@ public class WeaponScript : MonoBehaviour
 
             //Create a new shot at the position of the weapon
 			var shot = Instantiate(shotPrefab) as Transform;
-			Debug.Log (this.transform.right);
 			shot.position = new Vector3(transform.position.x + this.transform.right.x/4, transform.position.y + this.transform.right.y/4 - 0.04f, transform.position.z);
-			Debug.Log (shot.position);
-			shot.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(-10,10));
+
+			//Gives the player's shots spread
+			if (!isEnemy) {
+				shot.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range (-10, 10));
+			} else {
+				shot.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+			}
+
 
             ShotScript shotScript = shot.gameObject.GetComponent<ShotScript>();
 

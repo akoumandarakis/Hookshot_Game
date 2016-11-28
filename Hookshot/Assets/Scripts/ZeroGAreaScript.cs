@@ -9,6 +9,7 @@ public class ZeroGAreaScript : MonoBehaviour {
 		if (collider.name == "ZeroGArea" && player != null) 
 		{
 			player.IsZeroG = true;
+
 		}
 	}
 
