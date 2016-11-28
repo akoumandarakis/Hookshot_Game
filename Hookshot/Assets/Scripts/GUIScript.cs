@@ -11,7 +11,6 @@ public class GUIScript : MonoBehaviour
     public GameObject HealthBar;
     private Vector3 originalHPScale;
 
-    public GameObject DeathMenuBackground;
 
     void Start()
     {

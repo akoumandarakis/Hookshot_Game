@@ -12,16 +12,11 @@ public class PlayerScript : MonoBehaviour {
     public float walkSpeed;
     public float jumpHeight;
     public float gravity;
-
-    //hookshot momentum settings
-    public float hookMomentumRetardantX;
-    public float hookMomentumRetardantY;
-    public float hookMomentumThreashhold;
+    public float hookMoveResist;
 
     //hookshot retraction settings (handled by hookshot script, don't set)
     [HideInInspector]
     public Vector3 hookshotAdjust;
-    private Vector3 previousHookshotAdjust;
     [HideInInspector]
     public bool hookLatched;
     [HideInInspector]
@@ -33,7 +28,6 @@ public class PlayerScript : MonoBehaviour {
 	private Transform weapon;
 	private SpriteRenderer weaponRenderer;
     private Vector3 ZeroVector = new Vector3(0, 0, 0);
-    private bool hasMomentum;
 
 	[HideInInspector]
 	public bool IsZeroG;
@@ -55,7 +49,6 @@ public class PlayerScript : MonoBehaviour {
 		weapon = this.gameObject.transform.GetChild (1);
 		//weapon.GetComponent<SpriteRenderer> ();
 		weaponRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
-        hasMomentum = false;
     }
 
     void Update()
@@ -64,11 +57,6 @@ public class PlayerScript : MonoBehaviour {
         if (hookLatched)
         {
             HookMovement();
-        }
-        //if not latched but the player has residual momentum from the hook, handle that
-        else if (hasMomentum)
-        {
-            HookMomentumHandler();
         }
 
 		//always take player input
@@ -84,14 +72,11 @@ public class PlayerScript : MonoBehaviour {
 
     private void HookMovement()
     {
-        previousHookshotAdjust = hookshotAdjust;
-        hasMomentum = true;
-        Controller.move(hookshotAdjust.normalized * Time.deltaTime * hookRetractSpeed);
-    }
-
-    private void HookMomentumHandler()
-    {
-        hasMomentum = false;
+        Controller.move(
+            hookshotAdjust.normalized 
+            * Time.deltaTime 
+            * hookRetractSpeed 
+            );
     }
 
     private void StandardMovement()
@@ -218,13 +203,14 @@ public class PlayerScript : MonoBehaviour {
         if (hookLatched)
         {
             HookMovement();
+            Controller.move(velocity * Time.deltaTime * hookMoveResist);
         }
         else
         {
             velocity.y += gravity * Time.deltaTime;
+            Controller.move(velocity * Time.deltaTime);
         }
 
-        Controller.move(velocity * Time.deltaTime);
     }
 
 	public void ZeroGMovement()
