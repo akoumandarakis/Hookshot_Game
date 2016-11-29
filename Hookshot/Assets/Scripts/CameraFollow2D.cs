@@ -6,7 +6,7 @@ public class CameraFollow2D : MonoBehaviour
 {
 	public Transform target;
 
-	public float damping = 0.1f;
+	public float damping = 0.01f;
 	public float lookAheadFactor = 0.5f;
 	public float lookAheadReturnSpeed = 0.5f;
 	public float lookAheadMoveThreshold = 0.1f;
@@ -56,14 +56,9 @@ public class CameraFollow2D : MonoBehaviour
 
 			if (targetObject != null) 
 			{
-				if (targetObject.GetComponent<PlayerScript> ().GetDirectionAiming () == "Right") 
-				{
-					newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + offset, aheadTargetPos.y, aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
-				} 
-				else
-				{
-					newPos = Vector3.SmoothDamp(transform.position, new Vector3 (aheadTargetPos.x - offset, aheadTargetPos.y, aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
-				}
+				float angleOfWeapon = targetObject.GetComponent<PlayerScript> ().GetDirectionAiming ().z; 
+
+				newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + (offset * Mathf.Cos(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.y + (offset * Mathf.Sin(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
 			}
 
             transform.position = newPos;
@@ -76,7 +71,7 @@ public class CameraFollow2D : MonoBehaviour
 		currentTarget = newTarget.transform;
 		targetObject = newTarget;
 		m_LastTargetPosition = currentTarget.position;
-        m_OffsetZ = transform.position.z;
+        m_OffsetZ = transform.position.z - 1;
         transform.parent = null;
 	}
 	

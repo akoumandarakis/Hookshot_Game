@@ -296,8 +296,9 @@ public class PlayerScript : MonoBehaviour {
 		return velocity.y;
 	}
 
-	public string GetDirectionAiming()
+	public Vector3 GetDirectionAiming()
 	{
+		/**
 		if (currentDirectionAiming == "Right") 
 		{
 			if ((weapon.transform.eulerAngles.z < 110 && weapon.transform.eulerAngles.z >= 0) || (weapon.transform.eulerAngles.z <= 360 && weapon.transform.eulerAngles.z > 250)) 
@@ -328,5 +329,8 @@ public class PlayerScript : MonoBehaviour {
 		{
 			return "Right";
 		}
+
+*/
+		return weapon.eulerAngles;
 	}
 }
