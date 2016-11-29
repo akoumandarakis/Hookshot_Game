@@ -35,10 +35,22 @@ public class HookShotScript : MonoBehaviour {
 
 	private SpriteRenderer visibility;
 
+	public bool OnPlayer = false;
+
+	private LineRenderer lineRenderer;
+
     // Use this for initialization
     void Start () {
         playerScript = GetComponentInParent<PlayerScript>();
         playerController = GetComponentInParent<CharacterController2D>();
+
+		lineRenderer = this.gameObject.GetComponent<LineRenderer> ();
+		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+		lineRenderer.SetColors (new Color (200, 100, 200, 255), new Color (200, 0, 200, 0));
+		lineRenderer.sortingLayerName = "player";
+		lineRenderer.sortingOrder = -1;
+		lineRenderer.SetWidth(0.01F, 0.01F);
+		lineRenderer.SetVertexCount(2);
 
         parent = transform.parent;
 
@@ -79,10 +91,30 @@ public class HookShotScript : MonoBehaviour {
 
 			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (yDif, xDif) * Mathf.Rad2Deg);
         }
-        //else if (!fired && Input.GetButtonDown("Fire2"))
-        //{
-        //    blocked = true;
-        //}
+		if (Input.GetButtonDown("Fire2") && latched)
+        {
+			ResetHookshot ();
+
+			this.gameObject.layer = LayerMask.NameToLayer ("Trigger");
+			if (visibility != null) {
+				visibility.enabled = true;
+			}
+			fired = true;
+			transform.parent = null;
+
+			Vector3 mousePOS = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+			float xDif = playerScript.transform.position.x - mousePOS.x;
+			float yDif = playerScript.transform.position.y - mousePOS.y;
+
+			float angleOfDirectionVector = Mathf.Atan2 (yDif, xDif);
+
+			//Set the direction
+			direction = new Vector3 (Mathf.Cos (angleOfDirectionVector), Mathf.Sin (angleOfDirectionVector), 0);
+			direction *= -1;
+
+			transform.eulerAngles = new Vector3 (0, 0, Mathf.Atan2 (yDif, xDif) * Mathf.Rad2Deg);
+        }
 
         if (fired && Input.GetButtonDown ("Jump") && latched && !playerScript.IsZeroG) {
 		playerController.velocity.y = playerScript.Jump (playerController.velocity);
@@ -140,17 +172,29 @@ public class HookShotScript : MonoBehaviour {
         }
         else if (latched)
         {
-            handOffDirection = transform.position - playerScript.transform.position;
+			lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x ,this.gameObject.transform.position.y,this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(1, new Vector3(playerScript.gameObject.transform.position.x, playerScript.gameObject.transform.position.y, playerScript.gameObject.transform.position.z));
 
-            handOffDirection.z = 0;
+			direction = playerScript.transform.position - transform.position;
 
-            //handOffDirection.Normalize();
 
-            handOffDirection.z = transform.position.z;
+			if (!OnPlayer) {
+				handOffDirection = transform.position - playerScript.transform.position;
 
-            handOffDirection *= retractSpeed;
+				handOffDirection.z = 0;
 
-            playerScript.hookshotAdjust = handOffDirection;
+				//handOffDirection.Normalize();
+
+				handOffDirection.z = transform.position.z;
+
+				handOffDirection *= retractSpeed;
+
+				playerScript.hookshotAdjust = handOffDirection;
+			} 
+			else 
+			{
+				playerScript.hookshotAdjust = ZeroVector;
+			}
         }
         else
         {
@@ -162,6 +206,7 @@ public class HookShotScript : MonoBehaviour {
     {
 		if (collider.gameObject.tag == "Hookable") {
 			if (!blocked) {
+				this.gameObject.transform.parent = collider.transform;
 				latched = true;
 			}
 		} else if (collider.gameObject.tag != "Player" && collider.gameObject.tag != "HookshotSeeThrough") 
@@ -170,9 +215,18 @@ public class HookShotScript : MonoBehaviour {
 		} 
 		else if (collider.gameObject.tag == "Player" && latched) 
 		{
-			blocked = true;
+			//blocked = true;
+			OnPlayer = true;
 		} 
     }
+
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		if (collider.gameObject.tag == "Player" && latched) 
+		{
+			OnPlayer = false;
+		} 
+	}
 
     private void Move()
     {
@@ -187,6 +241,9 @@ public class HookShotScript : MonoBehaviour {
 
     private void ResetHookshot()
     {
+		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z));
+		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z));
+
         transform.position = playerScript.transform.position;
 
         playerScript.hookshotAdjust = ZeroVector;
@@ -196,6 +253,7 @@ public class HookShotScript : MonoBehaviour {
         blocked = false;
         fired = false;
         latched = false;
+		OnPlayer = false;
 		this.gameObject.layer = LayerMask.NameToLayer ("Default");
 		if (visibility != null) {
 			visibility.enabled = false;
