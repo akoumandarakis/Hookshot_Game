@@ -30,7 +30,6 @@ public class hookablesMove : MonoBehaviour {
 	void Update () {
 		if (_canPush == true) {
 			direction = (player.transform.position.x) - (this.transform.position.x);
-			Debug.Log (direction);
 			if (direction > 0f){
 				Right.SetActive (true);
 				Left.SetActive (false);

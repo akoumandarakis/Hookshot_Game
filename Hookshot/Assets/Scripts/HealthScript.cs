@@ -10,12 +10,21 @@ public class HealthScript : MonoBehaviour
     public bool isEnemy = true;
 	public bool isPlatform = false;
 
+	public ParticleSystem deathParticles;
+
     void Start()
     {
         maxHP = hp;
 				
 	}
-
+	void Update (){
+		if (hp <= 0 && deathParticles != null)
+		{
+			deathParticles.transform.position = this.gameObject.transform.position;
+			deathParticles.Emit (30);
+			Destroy (gameObject);
+		}
+	}
     void OnTriggerEnter2D(Collider2D collider)
     {
         ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
@@ -30,11 +39,6 @@ public class HealthScript : MonoBehaviour
                 hp -= shot.damage;
                 Destroy(shot.gameObject);
             }
-        }
-
-        if (hp <= 0)
-        {
-			Destroy(gameObject);
         }
     }
 }

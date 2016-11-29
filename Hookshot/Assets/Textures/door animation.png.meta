@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8fd93afc49fad414892e1464a551eb92
-timeCreated: 1479917008
+timeCreated: 1480375127
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: door animation_3
     21300008: door animation_4
     21300010: door animation_5
+    21300012: door animation_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -120,6 +121,32 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: door animation_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: door animation_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 32
         height: 64
