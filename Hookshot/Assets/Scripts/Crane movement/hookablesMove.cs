@@ -6,7 +6,6 @@ public class hookablesMove : MonoBehaviour {
 	BoxCollider2D _buttonCollider;
 	public bool _canPush = false;
 	BoxCollider2D[] _buttonColliderList;
-	GameObject Q;
 	GameObject Right;
 	GameObject Left;
 	GameObject Crane;
@@ -17,7 +16,6 @@ public class hookablesMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		 _buttonColliderList = gameObject.GetComponentsInChildren<BoxCollider2D> ();
-		Q = transform.FindChild ("Q").gameObject;
 		Right = transform.FindChild ("right arrow").gameObject;
 		Left = transform.FindChild ("left arrow").gameObject;
 		Crane = transform.FindChild ("Crane").gameObject;
@@ -40,17 +38,13 @@ public class hookablesMove : MonoBehaviour {
 				Left.SetActive (true);
 
 			}
-			if (!Input.GetButton ("Button Press")) {
-				Q.SetActive (true);
-			}
+
 			if (Input.GetButton ("Button Press") && Crane.transform.localPosition.x <= maxDistance && direction > 0f) {
-				Q.SetActive (false);
 				float currentLocation = Crane.transform.localPosition.x;
 				float deltax = Mathf.MoveTowards(currentLocation, 3.0f, Time.deltaTime);
 				Crane.transform.localPosition = new Vector3 (deltax, Crane.transform.localPosition.y, 0f);
 			}
 			if (Input.GetButton ("Button Press") && Crane.transform.localPosition.x >= -maxDistance && direction <= 0f) {
-				Q.SetActive (false);
 				float currentLocation = Crane.transform.localPosition.x;
 				float deltax = Mathf.MoveTowards (currentLocation, -3.0f, Time.deltaTime);
 				Crane.transform.localPosition = new Vector3 (deltax, Crane.transform.localPosition.y, 0f);
@@ -70,7 +64,6 @@ public class hookablesMove : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D Coll){
 		if (Coll.gameObject.tag == "Player") {
 			_canPush = false;
-			Q.SetActive (false);
 		}
 
 	}

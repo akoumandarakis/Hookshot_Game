@@ -21,6 +21,7 @@ public class HealthScript : MonoBehaviour
 		if (hp <= 0)
 		{
 			if (deathParticles != null) {
+				deathParticles.transform.parent = null;
 				deathParticles.transform.position = this.gameObject.transform.position;
 				deathParticles.Emit (30);
 			}

@@ -66,6 +66,10 @@ public class WeaponScript : MonoBehaviour
 
 	private bool buttonDown;
 
+	private int weaponSpread;
+
+	public ParticleSystem muzzleFlash;
+
     // Use this for initialization
     void Start()
     {
@@ -77,7 +81,7 @@ public class WeaponScript : MonoBehaviour
 			objectToTrack = GameObject.FindGameObjectWithTag ("Player");
 		}
 
-
+		weaponSpread = 0;
     }
 	
 	// Update is called once per frame
@@ -103,6 +107,7 @@ public class WeaponScript : MonoBehaviour
 
 		if (Input.GetButtonUp ("Fire1")) {
 			buttonDown = false;
+			weaponSpread = 0;
 		}
 
 		if (Input.GetAxis ("Button Press") > 0 && Input.GetButtonDown("Button Press")) {
@@ -140,6 +145,12 @@ public class WeaponScript : MonoBehaviour
         //If the shot cooldown has reached 0
 		if (shotCooldown <= 0f && (shotTypes[shotIndex].Value > 0 || shotTypes[shotIndex].Value < 0))
         {
+			if (muzzleFlash != null) {
+				muzzleFlash.transform.position = new Vector3(transform.position.x + this.transform.right.x/4, transform.position.y + this.transform.right.y/4 - 0.04f, transform.position.z);
+				muzzleFlash.transform.eulerAngles = this.gameObject.transform.eulerAngles;
+				muzzleFlash.Emit(5);
+			}
+
             //Reset the shot cooldown
             shotCooldown = shotRate;
 
@@ -149,7 +160,7 @@ public class WeaponScript : MonoBehaviour
 
 			//Gives the player's shots spread
 			if (!isEnemy) {
-				shot.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range (-10, 10));
+				shot.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range (-weaponSpread, weaponSpread));
 			} else {
 				shot.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 			}
@@ -178,6 +189,11 @@ public class WeaponScript : MonoBehaviour
 
 			int numberOfShots = shotTypes [shotIndex].Value - 1;
 			shotTypes [shotIndex] = new KeyValuePair<Transform, int>(shotTypes[shotIndex].Key, numberOfShots);
+
+			if (weaponSpread < 5) 
+			{
+				weaponSpread++;
+			}
         }
     }
 

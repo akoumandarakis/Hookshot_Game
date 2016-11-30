@@ -18,7 +18,7 @@ public class InventoryScript : MonoBehaviour {
 				inventory.Add (pickupInfo.NameOfKeyCard);
 				Destroy (pickupInfo.gameObject);
 			}
-			else if (pickupInfo.Health && health != null && !health.isEnemy)
+			else if (pickupInfo.Health && health != null && !health.isEnemy && health.hp < health.maxHP)
 			{
 				health.hp += pickupInfo.AmountOfHealth;
 
