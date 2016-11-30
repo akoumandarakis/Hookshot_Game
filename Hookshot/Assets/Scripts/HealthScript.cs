@@ -18,10 +18,12 @@ public class HealthScript : MonoBehaviour
 				
 	}
 	void Update (){
-		if (hp <= 0 && deathParticles != null)
+		if (hp <= 0)
 		{
-			deathParticles.transform.position = this.gameObject.transform.position;
-			deathParticles.Emit (30);
+			if (deathParticles != null) {
+				deathParticles.transform.position = this.gameObject.transform.position;
+				deathParticles.Emit (30);
+			}
 			Destroy (gameObject);
 		}
 	}
