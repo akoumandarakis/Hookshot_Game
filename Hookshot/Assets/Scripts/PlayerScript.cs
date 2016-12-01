@@ -41,6 +41,8 @@ public class PlayerScript : MonoBehaviour {
 	/// </summary>
 	private string directionAiming = "Right";
 
+	public AudioClip deathSound;
+
     void Start()
     {
         Controller = gameObject.GetComponent<CharacterController2D>();
@@ -162,8 +164,8 @@ public class PlayerScript : MonoBehaviour {
         {
 			if (Controller.isGrounded) {
 				if (directionAiming == "Left") {
-					Animator.setAnimation("NewIdle");
-					weapon.position = new Vector3 (this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+					Animator.setAnimation("Idle Left");
+					weapon.position = new Vector3 (this.gameObject.transform.position.x + 0.03f, this.gameObject.transform.position.y - 0.02f, this.gameObject.transform.position.z);
 					weaponRenderer.sortingOrder = -1;
 
 				} else {
@@ -277,7 +279,7 @@ public class PlayerScript : MonoBehaviour {
     {
         //play death animation
         transform.parent.gameObject.AddComponent<DeathMenuScript>();
-
+		transform.parent.gameObject.GetComponent<DeathMenuScript> ().loseSound = deathSound;
     }
 
 	public float Jump(Vector3 velocity)

@@ -20,12 +20,6 @@ public class MoveTowardScript : MonoBehaviour {
 	/// </summary>
 	public Vector2 velocity = new Vector2(0f, 0f);
 
-	/// <summary>
-	/// (Use with tracker type enemies)
-	/// The maximum distance a tracker can move
-	/// </summary>
-	public int MaxDistance;
-
 	public Vector2 speed;
 
 	public GameObject objectToMoveTowards;

@@ -43,6 +43,9 @@ public class HookShotScript : MonoBehaviour {
 
 	public ParticleSystem hookshotFlash;
 
+	public AudioClip firedSound;
+	public AudioClip latchedSound;
+
     // Use this for initialization
     void Start () {
         playerScript = GetComponentInParent<PlayerScript>();
@@ -76,6 +79,8 @@ public class HookShotScript : MonoBehaviour {
 
         if (!fired && Input.GetButtonDown("Fire2"))
         {
+			AudioSource.PlayClipAtPoint (firedSound, this.transform.position);
+
 			if (hookshotFlash != null) {
 				hookshotFlash.transform.position = new Vector3(weapon.gameObject.transform.position.x + weapon.gameObject.transform.right.x/4, weapon.gameObject.transform.position.y + weapon.gameObject.transform.right.y/4 - 0.04f, weapon.gameObject.transform.position.z);
 				hookshotFlash.transform.eulerAngles = weapon.gameObject.transform.eulerAngles;
@@ -105,6 +110,7 @@ public class HookShotScript : MonoBehaviour {
 		if (Input.GetButtonDown("Fire2") && latched)
         {
 			ResetHookshot ();
+			AudioSource.PlayClipAtPoint (firedSound, this.transform.position);
 
 			if (hookshotFlash != null) {
 				hookshotFlash.transform.position = new Vector3(weapon.gameObject.transform.position.x + weapon.gameObject.transform.right.x/4, weapon.gameObject.transform.position.y + weapon.gameObject.transform.right.y/4 - 0.04f, weapon.gameObject.transform.position.z);
@@ -225,6 +231,7 @@ public class HookShotScript : MonoBehaviour {
 			if (!blocked) {
 				this.gameObject.transform.parent = collider.transform;
 				latched = true;
+				AudioSource.PlayClipAtPoint (latchedSound, this.transform.position);
 			}
 		} else if (collider.gameObject.tag != "Player" && collider.gameObject.tag != "HookshotSeeThrough") 
 		{

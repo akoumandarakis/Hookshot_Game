@@ -70,6 +70,8 @@ public class WeaponScript : MonoBehaviour
 
 	public ParticleSystem muzzleFlash;
 
+	public AudioClip shotSound;
+
     // Use this for initialization
     void Start()
     {
@@ -151,6 +153,10 @@ public class WeaponScript : MonoBehaviour
 				muzzleFlash.Emit(5);
 			}
 
+			if (shotSound != null) {
+				
+				AudioSource.PlayClipAtPoint (shotSound, this.transform.position);
+			}
             //Reset the shot cooldown
             shotCooldown = shotRate;
 

@@ -11,6 +11,10 @@ public class HealthScript : MonoBehaviour
 	public bool isPlatform = false;
 
 	public ParticleSystem deathParticles;
+	public ParticleSystem hitParticles;
+
+	public AudioClip damageSound;
+	public AudioClip missleDamageSound;
 
     void Start()
     {
@@ -39,6 +43,18 @@ public class HealthScript : MonoBehaviour
 			}
             else if (shot.enemyShot != isEnemy)
             {
+				if (hitParticles != null) {
+					
+					hitParticles.transform.position = this.gameObject.transform.position;
+					hitParticles.Emit (5);
+				}
+
+				if (missleDamageSound != null && collider.name == "Missle(Clone)") {
+					AudioSource.PlayClipAtPoint (missleDamageSound, this.transform.position);
+				} else if (damageSound != null) {
+					AudioSource.PlayClipAtPoint (damageSound, this.transform.position);
+				}
+
                 hp -= shot.damage;
                 Destroy(shot.gameObject);
             }
