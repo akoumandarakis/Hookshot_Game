@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
 {
     void OnGUI()
     {
+		UnityEngine.Cursor.visible = true;
+
         const int buttonWidth = 84;
         const int buttonHeight = 60;
 
