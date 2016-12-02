@@ -112,14 +112,6 @@ public class WeaponScript : MonoBehaviour
 			weaponSpread = 0;
 		}
 
-		if (Input.GetAxis ("Button Press") > 0 && Input.GetButtonDown("Button Press")) {
-			shotIndex++;
-			if (shotIndex >= shotTypes.Count)
-			{
-				shotIndex = 0;
-			}
-		}
-
 		if (Input.GetAxis ("Button Press") < 0 && Input.GetButtonDown("Button Press")) {
 			shotIndex--;
 			if (shotIndex < 0)
