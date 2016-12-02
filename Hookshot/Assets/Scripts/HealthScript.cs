@@ -39,6 +39,12 @@ public class HealthScript : MonoBehaviour
         {
 			if (isPlatform) 
 			{
+				if (hitParticles != null) {
+
+					hitParticles.transform.position = collider.transform.position;
+					hitParticles.Emit (5);
+				}
+
 				Destroy (shot.gameObject);
 			}
             else if (shot.enemyShot != isEnemy)
