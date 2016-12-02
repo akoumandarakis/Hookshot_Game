@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour {
     public float jumpHeight;
     public float gravity;
     public float hookMoveResist;
+	public Vector2 maxVelocity = new Vector2(0.5f, 0.5f);
 
     //hookshot retraction settings (handled by hookshot script, don't set)
     [HideInInspector]
@@ -40,6 +41,8 @@ public class PlayerScript : MonoBehaviour {
 	/// Used to determine animation
 	/// </summary>
 	private string directionAiming = "Right";
+
+	public AudioClip deathSound;
 
     void Start()
     {
@@ -162,8 +165,8 @@ public class PlayerScript : MonoBehaviour {
         {
 			if (Controller.isGrounded) {
 				if (directionAiming == "Left") {
-					Animator.setAnimation("NewIdle");
-					weapon.position = new Vector3 (this.gameObject.transform.position.x - 0.045f, this.gameObject.transform.position.y + 0.028f, this.gameObject.transform.position.z);
+					Animator.setAnimation("Idle Left");
+					weapon.position = new Vector3 (this.gameObject.transform.position.x + 0.03f, this.gameObject.transform.position.y - 0.02f, this.gameObject.transform.position.z);
 					weaponRenderer.sortingOrder = -1;
 
 				} else {
@@ -259,16 +262,36 @@ public class PlayerScript : MonoBehaviour {
 			direction = new Vector2 (direction.x, 1); 
 		}
 
-		if (hookLatched)
-		{
-			HookMovement();
-		}
+
 			
 		acceleration = new Vector3 (walkSpeed * direction.x, walkSpeed * direction.y);
 
 		acceleration *= Time.deltaTime;
 
 		velocity = new Vector3 (velocity.x + acceleration.x, velocity.y + acceleration.y);
+
+		if (velocity.x > maxVelocity.x) 
+		{
+			velocity.x = maxVelocity.x;
+		} 
+		else if (velocity.x < -maxVelocity.x) 
+		{
+			velocity.x = -maxVelocity.x;
+		}
+
+		if (velocity.y > maxVelocity.y)
+		{
+			velocity.y = maxVelocity.y;
+		}
+		else if (velocity.y < -maxVelocity.y) 
+		{
+			velocity.y = -maxVelocity.y;
+		}
+
+		if (hookLatched)
+		{
+			HookMovement();
+		}
 
 		Controller.move(velocity *= Time.deltaTime);
 	}
@@ -277,7 +300,9 @@ public class PlayerScript : MonoBehaviour {
     {
         //play death animation
         transform.parent.gameObject.AddComponent<DeathMenuScript>();
-
+		if (transform.parent.gameObject.GetComponent<DeathMenuScript> () != null) {
+			transform.parent.gameObject.GetComponent<DeathMenuScript> ().loseSound = deathSound;
+		}
     }
 
 	public float Jump(Vector3 velocity)

@@ -6,7 +6,7 @@ public class CameraFollow2D : MonoBehaviour
 {
 	public Transform target;
 
-	public float damping = 0.01f;
+	public float damping = 0.00f;
 	public float lookAheadFactor = 0.5f;
 	public float lookAheadReturnSpeed = 0.5f;
 	public float lookAheadMoveThreshold = 0.1f;
@@ -56,9 +56,22 @@ public class CameraFollow2D : MonoBehaviour
 
 			if (targetObject != null) 
 			{
-				float angleOfWeapon = targetObject.GetComponent<PlayerScript> ().GetDirectionAiming ().z; 
+				float angleOfWeapon = targetObject.GetComponent<PlayerScript> ().GetDirectionAiming ().z;
+				Vector3 mousePos = Input.mousePosition;
+				Vector3 vectorToMouse = targetObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z - Camera.main.transform.position.z));
+				Vector2 vectorToMouse2D = new Vector2 (vectorToMouse.x, vectorToMouse.y);
+				float distanceToMouse = vectorToMouse2D.magnitude;
 
-				newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + (offset * Mathf.Cos(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.y + (offset * Mathf.Sin(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
+				if (distanceToMouse < offset) 
+				{
+					newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + (distanceToMouse * Mathf.Cos(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.y + (distanceToMouse * Mathf.Sin(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
+				} 
+				else 
+				{
+					newPos = Vector3.SmoothDamp (transform.position, new Vector3 (aheadTargetPos.x + (offset * Mathf.Cos(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.y + (offset * Mathf.Sin(Mathf.Deg2Rad * angleOfWeapon)), aheadTargetPos.z), ref m_CurrentVelocity, damping * cameraSpeed);
+				}
+
+
 			}
 
             transform.position = newPos;

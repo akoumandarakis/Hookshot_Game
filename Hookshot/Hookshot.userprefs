@@ -1,6 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthScript.cs">
+    <Files>
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="282" Column="1" />
+      <File FileName="Assets/Scripts/InventoryScript.cs" Line="17" Column="71" />
+      <File FileName="Assets/Scripts/HookShotScript.cs" Line="113" Column="68" />
+      <File FileName="Assets/Scripts/CameraFollow2D.cs" Line="60" Column="44" />
+      <File FileName="Assets/Scripts/ReticleScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WeaponScript.cs" Line="158" Column="68" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="53" Column="79" />
+      <File FileName="Assets/Scripts/MoveTowardScript.cs" Line="21" Column="48" />
+      <File FileName="Assets/Scripts/GUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="42" Column="5" />
+      <File FileName="Assets/Scripts/DeathMenuScript.cs" Line="16" Column="77" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

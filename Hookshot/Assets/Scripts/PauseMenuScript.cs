@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour {
 
     public GameObject PausedUI;
-    public GameObject Music;    
+    public GameObject Music;
+
+	public GameObject player;
 
     private bool paused = false;
 
@@ -25,11 +27,19 @@ public class PauseMenuScript : MonoBehaviour {
         {
             PausedUI.SetActive(true);
             Time.timeScale = 0;
+			if (player != null) {
+				player.GetComponentInChildren<WeaponScript> ().enabled = false;
+				player.GetComponent<PlayerScript> ().enabled = false;
+			}
         }
         if (!paused)
         {
             PausedUI.SetActive(false);
             Time.timeScale = 1;
+			if (player != null) {
+				player.GetComponentInChildren<WeaponScript> ().enabled = true;
+				player.GetComponent<PlayerScript> ().enabled = true;
+			}
         }
     }
 

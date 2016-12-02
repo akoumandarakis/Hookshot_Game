@@ -20,12 +20,6 @@ public class MoveTowardScript : MonoBehaviour {
 	/// </summary>
 	public Vector2 velocity = new Vector2(0f, 0f);
 
-	/// <summary>
-	/// (Use with tracker type enemies)
-	/// The maximum distance a tracker can move
-	/// </summary>
-	public int MaxDistance;
-
 	public Vector2 speed;
 
 	public GameObject objectToMoveTowards;
@@ -39,7 +33,7 @@ public class MoveTowardScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (AcceleratesTowardObject) {
+		if (AcceleratesTowardObject && objectToMoveTowards != null) {
 			//Gets the position of the object to accelerate towards
 			Vector3 objPos = objectToMoveTowards.transform.position;
 
@@ -65,7 +59,7 @@ public class MoveTowardScript : MonoBehaviour {
 			transform.Translate (velocity, Space.World);
 		} 
 
-		else if (MatchXPosition) 
+		else if (MatchXPosition && objectToMoveTowards != null) 
 		{
 			//Gets the position of the object to accelerate towards
 			Vector3 objPos = objectToMoveTowards.transform.position;
@@ -87,7 +81,7 @@ public class MoveTowardScript : MonoBehaviour {
 			transform.Translate (velocity, Space.World);
 		} 
 
-		else if (MatchYPosition) 
+		else if (MatchYPosition && objectToMoveTowards != null) 
 		{
 			//Gets the position of the object to accelerate towards
 			Vector3 objPos = objectToMoveTowards.transform.position;

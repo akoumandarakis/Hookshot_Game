@@ -9,7 +9,7 @@ public class ReticleScript : MonoBehaviour {
 
 		Vector3 mousePos = Input.mousePosition;
 		Vector3 screenPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z - Camera.main.transform.position.z));
-		this.transform.position = screenPos;
+		this.transform.position = new Vector3 (screenPos.x, screenPos.y - 0.04f, screenPos.z);
 	
 	}
 }

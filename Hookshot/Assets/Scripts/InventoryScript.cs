@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class InventoryScript : MonoBehaviour {
 
 	public List<string> inventory;
+	public AudioClip pickupSound;
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
@@ -13,12 +14,13 @@ public class InventoryScript : MonoBehaviour {
 		WeaponScript weapon = this.gameObject.GetComponentInChildren<WeaponScript> ();
 		if (pickupInfo != null)
 		{
+			AudioSource.PlayClipAtPoint (pickupSound, this.transform.position);
 			if (pickupInfo.KeyCard) 
 			{
 				inventory.Add (pickupInfo.NameOfKeyCard);
 				Destroy (pickupInfo.gameObject);
 			}
-			else if (pickupInfo.Health && health != null && !health.isEnemy)
+			else if (pickupInfo.Health && health != null && !health.isEnemy && health.hp < health.maxHP)
 			{
 				health.hp += pickupInfo.AmountOfHealth;
 

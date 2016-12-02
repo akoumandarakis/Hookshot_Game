@@ -4,10 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuScript : MonoBehaviour {
 
+	public AudioClip loseSound;
+	public bool played = false;
+
 	void OnGUI()
     {
         const int buttonWidth = 120;
         const int buttonHeight = 60;
+
+		if (loseSound != null && !played) {
+			AudioSource.PlayClipAtPoint (loseSound, this.transform.transform.position);
+			played = true;
+		}
 
         if (GUI.Button(
                 new Rect(

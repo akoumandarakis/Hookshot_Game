@@ -5,21 +5,38 @@ public class ZeroGSwitchScript : MonoBehaviour {
 
 	public GameObject ZeroGArea;
 
-	void OnTriggerEnter2D (Collider2D collider) 
+	private bool canSwitch;
+
+	private HookShotScript hookshot;
+
+	void OnTriggerEnter2D (Collider2D collider)
 	{
-		HookShotScript hookshot = collider.GetComponent<HookShotScript> ();
+		hookshot = collider.GetComponent<HookShotScript> ();
+		canSwitch = true;
+	}
 
-		if (hookshot != null && ZeroGArea != null) 
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		hookshot = null;
+		canSwitch = false;
+	}
+
+	void Update()
+	{
+		if (hookshot != null && ZeroGArea != null && canSwitch) 
 		{
-			if (ZeroGArea.layer == 0) 
+			if (Input.GetAxis ("Down") > 0  || hookshot.gameObject.transform.parent == null) 
 			{
-				ZeroGArea.layer = LayerMask.NameToLayer ("Trigger");
-			} 
-			else if (ZeroGArea.layer == 10) 
-			{
-				ZeroGArea.layer = LayerMask.NameToLayer ("Default");
+				if (ZeroGArea.layer == 0) 
+				{
+					ZeroGArea.layer = LayerMask.NameToLayer ("Trigger");
+				} 
+				else if (ZeroGArea.layer == 10) 
+				{
+					ZeroGArea.layer = LayerMask.NameToLayer ("Default");
+				}
+				canSwitch = false;
 			}
-
 		}
 	}
 }
