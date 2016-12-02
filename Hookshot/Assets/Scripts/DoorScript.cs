@@ -15,12 +15,10 @@ public class DoorScript : MonoBehaviour {
 
 	SpriteRenderer rend;
 
-	AnimationController2D lightAnimator;
 
 	void Start(){
 		rend = doorLight.GetComponent<SpriteRenderer> ();
 		rend.color = Red;
-		lightAnimator = doorLight.GetComponent<AnimationController2D> ();
 	}
 	void OnTriggerEnter2D (Collider2D collider) 
 	{
@@ -39,10 +37,9 @@ public class DoorScript : MonoBehaviour {
 					}
 					door.layer = LayerMask.NameToLayer("Default");
 				}
-				else
-				{
-					doorLight.
-				}
+
+					
+
 			}
 		}
 	}
