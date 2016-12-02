@@ -8,6 +8,8 @@ public class LightColorPick : MonoBehaviour {
 	public bool LightBlue;
 	public bool Purple;
 	public bool White;
+	public bool Orange;
+	public bool Yellow;
 	SpriteRenderer Rend;
 	// Use this for initialization
 	void Awake () {
@@ -21,7 +23,7 @@ public class LightColorPick : MonoBehaviour {
 
 		}
 		if (Blue == true){
-			Rend.color = new Color (.09f, 0.074f, 0.776f, 1.0f);
+			Rend.color = new Color (.0078f, 0.705f, 0.99f, 1.0f);
 
 		}
 		if (LightBlue == true){
@@ -34,6 +36,14 @@ public class LightColorPick : MonoBehaviour {
 		}
 		if (White == true){
 			Rend.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+
+		}
+		if (Orange == true){
+			Rend.color = new Color (.99f, .474f, .007f, 1.0f);
+
+		}
+		if (Yellow == true){
+			Rend.color = new Color (.99f, .96f, .003f, 1.0f);
 
 		}
 	}
