@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\MoveTowardScript.cs" />
+     <Compile Include="Assets\Scripts\MusicPlayerScript.cs" />
      <Compile Include="Assets\Scripts\MusicSliderScript.cs" />
      <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
      <Compile Include="Assets\Scripts\PickupInfoScript.cs" />
