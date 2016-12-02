@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1feef80c1c20c4850b311e20b4e60144
-timeCreated: 1480379170
+timeCreated: 1480650341
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -2475,8 +2475,8 @@ TextureImporter:
       name: Hookshot Texture Atlas_172
       rect:
         serializedVersion: 2
-        x: 722
-        y: 830
+        x: 715
+        y: 832
         width: 130
         height: 64
       alignment: 0
@@ -2488,8 +2488,8 @@ TextureImporter:
       name: Hookshot Texture Atlas_173
       rect:
         serializedVersion: 2
-        x: 76
-        y: 992
+        x: 82
+        y: 994
         width: 14
         height: 14
       alignment: 0
@@ -2501,8 +2501,8 @@ TextureImporter:
       name: Hookshot Texture Atlas_174
       rect:
         serializedVersion: 2
-        x: 76
-        y: 976
+        x: 82
+        y: 978
         width: 14
         height: 14
       alignment: 0
