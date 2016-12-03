@@ -71,14 +71,14 @@ public class WeaponScript : MonoBehaviour
 	public ParticleSystem muzzleFlash;
 
 	public AudioClip shotSound;
-
+ 
     // Use this for initialization
     void Start()
     {
         shotCooldown = 0f;
-		shotTypes.Add(new KeyValuePair<Transform, int>(shotPrefab, -1)); 
+		shotTypes.Add(new KeyValuePair<Transform, int>(shotPrefab, -1));
 
-		if (tracksObject) 
+        if (tracksObject) 
 		{
 			objectToTrack = GameObject.FindGameObjectWithTag ("Player");
 		}
@@ -146,7 +146,7 @@ public class WeaponScript : MonoBehaviour
 			}
 
 			if (shotSound != null) {
-				
+
 				AudioSource.PlayClipAtPoint (shotSound, this.transform.position);
 			}
             //Reset the shot cooldown

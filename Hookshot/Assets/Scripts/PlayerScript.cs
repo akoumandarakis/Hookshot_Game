@@ -298,11 +298,11 @@ public class PlayerScript : MonoBehaviour {
 
     public void OnDestroy()
     {
-        //play death animation
-        transform.parent.gameObject.AddComponent<DeathMenuScript>();
-		if (transform.parent.gameObject.GetComponent<DeathMenuScript> () != null) {
-			transform.parent.gameObject.GetComponent<DeathMenuScript> ().loseSound = deathSound;
-		}
+        //play death animation?
+
+        mainCamera.GetComponent<PauseMenuScript>().OnPlayerDeath();
+        
+        Debug.Log("End of OnDestroy()");
     }
 
 	public float Jump(Vector3 velocity)

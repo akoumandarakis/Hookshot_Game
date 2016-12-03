@@ -5,15 +5,21 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour {
 
     public GameObject PausedUI;
+    public GameObject DeadUI;
+
     public GameObject Music;
 
 	public GameObject player;
 
+    public AudioClip loseSound;
+
     private bool paused = false;
+    private bool dead = false;
 
     void Start()
     {
         PausedUI.SetActive(false);
+
     }
 
     void Update()
@@ -23,7 +29,7 @@ public class PauseMenuScript : MonoBehaviour {
             paused = !paused;
         }
 
-        if (paused)
+        if (paused && !dead)
         {
             PausedUI.SetActive(true);
             Time.timeScale = 0;
@@ -59,5 +65,23 @@ public class PauseMenuScript : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void Quit() { }//unimplimented
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void OnPlayerDeath()
+    {
+        if (loseSound != null)
+        {
+            AudioSource.PlayClipAtPoint(loseSound, this.transform.transform.position);
+        }
+
+        dead = true;
+        Time.timeScale = 0f;
+        if (DeadUI != null)
+        {
+            DeadUI.SetActive(true);
+        }
+    }
 }

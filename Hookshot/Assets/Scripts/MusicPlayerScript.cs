@@ -9,6 +9,8 @@ public class MusicPlayerScript : MonoBehaviour {
 	IEnumerator Start () {
 		AudioSource audio = GetComponent<AudioSource>();
 
+        audio.ignoreListenerVolume = true;
+
 		audio.Play();
 		yield return new WaitForSeconds(audio.clip.length);
 		if (loopClip != null) {
