@@ -60,6 +60,6 @@ public class SoldierMoveScript : MonoBehaviour {
         velocity = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
 
         velocity *= Time.deltaTime;
-        transform.Translate(velocity);
+        transform.Translate(-velocity);
     }
 }
