@@ -56,9 +56,12 @@ public class HealthScript : MonoBehaviour
 				}
 
 				if (missleDamageSound != null && collider.name == "Missle(Clone)") {
-					AudioSource.PlayClipAtPoint (missleDamageSound, this.transform.position);
+
+                    AudioSource.PlayClipAtPoint (missleDamageSound, this.transform.position);
+
 				} else if (damageSound != null) {
-					AudioSource.PlayClipAtPoint (damageSound, this.transform.position);
+
+                    AudioSource.PlayClipAtPoint (damageSound, this.transform.position);
 				}
 
                 hp -= shot.damage;
