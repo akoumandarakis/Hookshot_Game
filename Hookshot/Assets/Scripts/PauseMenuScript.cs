@@ -11,7 +11,7 @@ public class PauseMenuScript : MonoBehaviour {
 
 	public GameObject player;
 
-    public AudioClip loseSound;
+    public AudioSource loseSound;
 
     private bool paused = false;
     private bool dead = false;
@@ -74,7 +74,7 @@ public class PauseMenuScript : MonoBehaviour {
     {
         if (loseSound != null)
         {
-            AudioSource.PlayClipAtPoint(loseSound, this.transform.transform.position);
+			loseSound.Play ();
         }
 
         dead = true;

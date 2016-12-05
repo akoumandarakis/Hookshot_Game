@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuScript : MonoBehaviour {
 
-	public AudioClip loseSound;
+	public AudioSource loseSound;
 	public bool played = false;
 
 	void OnGUI()
@@ -13,7 +13,7 @@ public class DeathMenuScript : MonoBehaviour {
         const int buttonHeight = 60;
 
 		if (loseSound != null && !played) {
-			AudioSource.PlayClipAtPoint (loseSound, this.transform.transform.position);
+			loseSound.Play ();
 			played = true;
 		}
 

@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
 	/// </summary>
 	private string directionAiming = "Right";
 
-	public AudioClip deathSound;
+	public AudioSource deathSound;
 
     void Start()
     {
