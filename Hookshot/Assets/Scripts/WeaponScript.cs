@@ -71,6 +71,8 @@ public class WeaponScript : MonoBehaviour
 	public ParticleSystem muzzleFlash;
 
 	public AudioSource shotSound;
+
+	public AudioSource shotDamageSound;
  
     // Use this for initialization
     void Start()
@@ -155,6 +157,10 @@ public class WeaponScript : MonoBehaviour
             //Create a new shot at the position of the weapon
 			var shot = Instantiate(shotPrefab) as Transform;
 			shot.position = new Vector3(transform.position.x + this.transform.right.x/4, transform.position.y + this.transform.right.y/4 - 0.04f, transform.position.z);
+			HealthScript shotHealth = shot.GetComponent<HealthScript> ();
+			if (shotHealth != null && shotDamageSound != null) {
+				shotHealth.damageSound = shotDamageSound;
+			}
 
 			//Gives the player's shots spread
 			if (!isEnemy) {
