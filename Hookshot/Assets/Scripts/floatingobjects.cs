@@ -9,6 +9,7 @@ public class floatingobjects : MonoBehaviour {
 
 	public float maxDistance;
 
+	public GameObject parent;
 
 	// Use this for initialization
 	void Start () {
@@ -19,21 +20,21 @@ public class floatingobjects : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//if (zeroG) {
+		if (parent.layer == 10) {
 			if (currentPosition <= maxDistance) {
 
-				currentPosition = Mathf.MoveTowards (currentPosition, maxDistance, (interval * Time.deltaTime));
+				currentPosition = currentPosition + (interval * Time.deltaTime);
 
 				this.transform.localPosition = new Vector3 (0f, currentPosition, 0f);
 		
 			}
-		//}
-		//if(notzeroG && currentPosition >= 0f){
+		}
+		if(parent.layer != 10 && currentPosition >= 0f){
 
-			//currentPosition = Mathf.MoveTowards (currentPosition, 0f, (interval * Time.deltaTime));
+			currentPosition = Mathf.MoveTowards (currentPosition, 0f, (4.0f * interval * Time.deltaTime));
 
-			//this.transform.localPosition = new Vector3 (0f, currentPosition, 0f);
+			this.transform.localPosition = new Vector3 (0f, currentPosition, 0f);
 
-		//}
+		}
 	}
 }

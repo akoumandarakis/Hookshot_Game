@@ -70,12 +70,15 @@
      <Compile Include="Assets\Scripts\MoveTowardScript.cs" />
      <Compile Include="Assets\Scripts\MusicPlayerScript.cs" />
      <Compile Include="Assets\Scripts\MusicSliderScript.cs" />
+     <Compile Include="Assets\Scripts\OnBossRoomEnter.cs" />
+     <Compile Include="Assets\Scripts\OnBossRoomExit.cs" />
      <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
      <Compile Include="Assets\Scripts\PickupInfoScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\ReticleScript.cs" />
      <Compile Include="Assets\Scripts\ShotScript.cs" />
      <Compile Include="Assets\Scripts\SoldierMoveScript.cs" />
+     <Compile Include="Assets\Scripts\SoundFXSliderScript.cs" />
      <Compile Include="Assets\Scripts\VeilAlphaScript.cs" />
      <Compile Include="Assets\Scripts\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\ZeroGAreaScript.cs" />
