@@ -25,4 +25,9 @@ public class MenuScript : MonoBehaviour
 	{
 		InstructionsImage.SetActive (false);
 	}
+
+	void Update()
+	{
+		Cursor.visible = true;
+	}
 }
