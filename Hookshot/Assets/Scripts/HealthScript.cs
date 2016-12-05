@@ -13,8 +13,8 @@ public class HealthScript : MonoBehaviour
 	public ParticleSystem deathParticles;
 	public ParticleSystem hitParticles;
 
-	public AudioClip damageSound;
-	public AudioClip missleDamageSound;
+	public AudioSource damageSound;
+	public AudioSource missleDamageSound;
 
     void Start()
     {
@@ -57,11 +57,11 @@ public class HealthScript : MonoBehaviour
 
 				if (missleDamageSound != null && collider.name == "Missle(Clone)") {
 
-                    AudioSource.PlayClipAtPoint (missleDamageSound, this.transform.position);
+					missleDamageSound.Play ();
 
 				} else if (damageSound != null) {
 
-                    AudioSource.PlayClipAtPoint (damageSound, this.transform.position);
+					damageSound.Play ();
 				}
 
                 hp -= shot.damage;

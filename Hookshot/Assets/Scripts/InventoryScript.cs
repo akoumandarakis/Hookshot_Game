@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class InventoryScript : MonoBehaviour {
 
 	public List<string> inventory;
-	public AudioClip pickupSound;
+	public AudioSource pickupSound;
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
@@ -14,7 +14,7 @@ public class InventoryScript : MonoBehaviour {
 		WeaponScript weapon = this.gameObject.GetComponentInChildren<WeaponScript> ();
 		if (pickupInfo != null)
 		{
-			AudioSource.PlayClipAtPoint (pickupSound, this.transform.position);
+			pickupSound.Play ();
 			if (pickupInfo.KeyCard) 
 			{
 				inventory.Add (pickupInfo.NameOfKeyCard);

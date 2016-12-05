@@ -1,13 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DoorScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HookShotScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/SoldierMoveScript.cs" Line="63" Column="30" />
-      <File FileName="Assets/Scripts/ZeroGSwitchScript.cs" Line="25" Column="3" />
-      <File FileName="Assets/Scripts/floatingobjects.cs" Line="34" Column="64" />
-      <File FileName="Assets/Scripts/BoxFloatingScript.cs" Line="20" Column="18" />
-      <File FileName="Assets/Scripts/AnimationController2D.cs" Line="26" Column="54" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="6" Column="18" />
+      <File FileName="Assets/Scripts/WeaponScript.cs" Line="150" Column="23" />
       <File FileName="Assets/Scripts/DoorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HookShotScript.cs" Line="185" Column="60" />
+      <File FileName="Assets/Scripts/floatingobjects.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BoxFloatingScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScript.cs" Line="31" Column="25" />
+      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="77" Column="22" />
+      <File FileName="Assets/Scripts/DeathMenuScript.cs" Line="16" Column="22" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="64" Column="26" />
+      <File FileName="Assets/Scripts/InventoryScript.cs" Line="17" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
