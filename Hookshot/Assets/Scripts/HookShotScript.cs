@@ -41,6 +41,8 @@ public class HookShotScript : MonoBehaviour {
 
 	private WeaponScript weapon;
 
+	private Transform PlayerParent;
+
 	public ParticleSystem hookshotFlash;
 
 	public AudioClip firedSound;
@@ -67,6 +69,7 @@ public class HookShotScript : MonoBehaviour {
         blocked = false;
 
 		playerScript.hookRetractSpeed = retractSpeed;
+		PlayerParent = playerScript.transform.parent;
 
 		visibility = GetComponentInParent<SpriteRenderer> ();
 		if (visibility != null) {
@@ -241,6 +244,7 @@ public class HookShotScript : MonoBehaviour {
 		{
 			//blocked = true;
 			OnPlayer = true;
+			collider.transform.parent = this.gameObject.transform;
 		} 
     }
 
@@ -271,6 +275,7 @@ public class HookShotScript : MonoBehaviour {
         transform.position = playerScript.transform.position;
 
         playerScript.hookshotAdjust = ZeroVector;
+		playerScript.gameObject.transform.parent = PlayerParent;
 
         transform.parent = parent;
          
