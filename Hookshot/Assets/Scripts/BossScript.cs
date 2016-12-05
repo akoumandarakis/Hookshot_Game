@@ -20,6 +20,9 @@ public class BossScript : MonoBehaviour {
 	private float attackCooldown;
 	//public float attackTime;
 
+
+	public AudioSource missleDamageSound;
+
 	public int numberOfMissles;
 
 	private int attackType = 0;
@@ -112,9 +115,14 @@ public class BossScript : MonoBehaviour {
 			var missle = Instantiate(misslePrefab) as Transform;
 			missle.position = new Vector3(transform.position.x, transform.position.y + Random.Range(0f, 1f), transform.position.z);
 			MoveTowardScript missleMovement = missle.GetComponent<MoveTowardScript> ();
+			HealthScript missleHealth = missle.GetComponent<HealthScript> ();
 			if (missleMovement != null) 
 			{
 				missleMovement.objectToMoveTowards = GameObject.FindGameObjectWithTag ("Player");
+			}
+			if (missleHealth != null && missleDamageSound != null) 
+			{
+				missleHealth.damageSound = missleDamageSound;
 			}
 		}
 	}
