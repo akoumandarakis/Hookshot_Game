@@ -7,17 +7,19 @@ public class PauseMenuScript : MonoBehaviour {
     public GameObject PausedUI;
     public GameObject DeadUI;
 
-    public GameObject Music;
-
 	public GameObject player;
 
-    public AudioSource loseSound;
+	public GameObject _LoseSound;
+    private AudioSource loseSound;
 
     private bool paused = false;
     private bool dead = false;
 
     void Start()
     {
+		if (_LoseSound != null) {
+			loseSound = _LoseSound.GetComponent<AudioSource> ();
+		}
         PausedUI.SetActive(false);
 
     }
