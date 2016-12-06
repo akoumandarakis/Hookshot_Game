@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bc7c7789d01334abb88691dcc2ad7a65
-timeCreated: 1480969349
+timeCreated: 1480982145
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,6 +11,11 @@ TextureImporter:
     21300008: zero G switch (1)_4
     21300010: zero G switch (1)_5
     21300012: zero G switch (1)_6
+    21300014: zero G switch (1)_7
+    21300016: zero G switch (1)_8
+    21300018: zero G switch (1)_9
+    21300020: zero G switch (1)_10
+    21300022: zero G switch (1)_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -68,12 +73,12 @@ TextureImporter:
       name: zero G switch (1)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 64
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -81,12 +86,12 @@ TextureImporter:
       name: zero G switch (1)_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 35
         y: 64
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -94,12 +99,12 @@ TextureImporter:
       name: zero G switch (1)_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 67
         y: 64
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -107,12 +112,12 @@ TextureImporter:
       name: zero G switch (1)_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 32
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -120,12 +125,12 @@ TextureImporter:
       name: zero G switch (1)_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 35
         y: 32
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -133,12 +138,12 @@ TextureImporter:
       name: zero G switch (1)_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 67
         y: 32
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -146,12 +151,77 @@ TextureImporter:
       name: zero G switch (1)_6
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 32
+        width: 26
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zero G switch (1)_7
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 32
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zero G switch (1)_8
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 32
+        width: 26
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5563381, y: 0.48122072}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zero G switch (1)_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 32
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zero G switch (1)_10
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 64
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zero G switch (1)_11
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 64
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
