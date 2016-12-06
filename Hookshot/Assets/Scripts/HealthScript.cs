@@ -15,6 +15,7 @@ public class HealthScript : MonoBehaviour
 
 	public AudioSource damageSound;
 	public AudioSource missleDamageSound;
+	public AudioSource deathSound;
 
     void Start()
     {
@@ -25,9 +26,11 @@ public class HealthScript : MonoBehaviour
 		if (hp <= 0)
 		{
 			if (deathParticles != null) {
-				deathParticles.transform.parent = null;
 				deathParticles.transform.position = this.gameObject.transform.position;
 				deathParticles.Emit (30);
+			}
+			if (deathSound != null) {
+				deathSound.Play ();
 			}
 			Destroy (gameObject);
 		}
@@ -51,7 +54,7 @@ public class HealthScript : MonoBehaviour
             {
 				if (hitParticles != null) {
 					
-					hitParticles.transform.position = this.gameObject.transform.position;
+					hitParticles.transform.position = collider.transform.position;
 					hitParticles.Emit (5);
 				}
 
