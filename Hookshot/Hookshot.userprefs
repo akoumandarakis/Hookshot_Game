@@ -1,22 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MusicPlayerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HookShotScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/OnBossRoomEnter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WeaponScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="54" Column="14" />
+      <File FileName="Assets/Scripts/OnBossRoomEnter.cs" Line="51" Column="31" />
+      <File FileName="Assets/Scripts/WeaponScript.cs" Line="104" Column="10" />
       <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DoorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HookShotScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/floatingobjects.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BoxFloatingScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DeathMenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/InventoryScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BossScript.cs" Line="125" Column="50" />
-      <File FileName="Assets/Scripts/MusicPlayerScript.cs" Line="84" Column="4" />
-      <File FileName="Assets/Scripts/OnBossDeathScript.cs" Line="20" Column="37" />
+      <File FileName="Assets/KeepRotationSameScript.cs" Line="16" Column="57" />
+      <File FileName="Assets/Scripts/CameraFollow2D.cs" Line="80" Column="71" />
+      <File FileName="Assets/Scripts/BossScript.cs" Line="138" Column="56" />
+      <File FileName="Assets/Scripts/GUIScript.cs" Line="118" Column="52" />
+      <File FileName="Assets/Scripts/HookShotScript.cs" Line="261" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -7,15 +7,19 @@ public class GUIScript : MonoBehaviour
 {
 
     public GameObject Player;
+	public GameObject Boss;
     private HealthScript PlayerHP;
+	private HealthScript BossHP;
 	private WeaponScript weapon;
 	private InventoryScript playerInventory;
 
     public GameObject HealthBar;
+	public GameObject BossHealthBar;
 	public GameObject AmmoType;
 	private SpriteRenderer ammoSprite;
 	public GameObject AmmoCounter;
     private Vector3 originalHPScale;
+	private Vector3 originalBossHPScale;
 
 	public GameObject KeycardIndicator1;
 	public GameObject KeycardIndicator2;
@@ -28,9 +32,11 @@ public class GUIScript : MonoBehaviour
     {
         PlayerHP = Player.GetComponent<HealthScript>();
         originalHPScale = HealthBar.transform.localScale;
+		originalBossHPScale = BossHealthBar.transform.localScale;
 		weapon = Player.GetComponentInChildren<WeaponScript> ();
 		ammoSprite = AmmoType.GetComponent<SpriteRenderer> ();
 		playerInventory = Player.GetComponent<InventoryScript> ();
+		BossHP = Boss.GetComponent<HealthScript> ();
 
 		KeycardIndicator1.SetActive (false);
 		KeycardIndicator2.SetActive (false);
@@ -95,6 +101,24 @@ public class GUIScript : MonoBehaviour
 			if (playerInventory.inventory.Contains ("Key5")) {
 				KeycardIndicator5.SetActive (true);
 			}
+		}
+
+		if (BossHP != null) {
+			float maxBossHP = (float)BossHP.maxHP;
+			float BossCurrentHP = (float)BossHP.hp;
+			float scale = BossCurrentHP / maxBossHP;
+
+			Vector3 newLocalScale = new Vector3(originalBossHPScale.x * scale,
+				originalHPScale.y,
+				0);
+			BossHealthBar.transform.localScale = newLocalScale;
+		}
+		else
+		{
+			Vector3 newLocalScale = new Vector3(originalBossHPScale.x * .01F,
+				originalHPScale.y,
+				0);
+			BossHealthBar.transform.localScale = newLocalScale;
 		}
 
     }

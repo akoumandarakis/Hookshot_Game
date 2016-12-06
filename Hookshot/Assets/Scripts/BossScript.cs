@@ -13,15 +13,18 @@ public class BossScript : MonoBehaviour {
 
 	public Transform misslePrefab;
 
-	public float attackRate;
+	public float attackLength;
 
 	//public float attackLength;
+	public float chargeLength;
 
 	private float attackCooldown;
 	//public float attackTime;
 
-
+	public AudioSource missleFireSound;
 	public AudioSource missleDamageSound;
+	public AudioSource ChargeUp;
+
 
 	public int numberOfMissles;
 
@@ -30,6 +33,8 @@ public class BossScript : MonoBehaviour {
 	private int prevAttack = 4;
 
 	private int prevPrevAttack = 0;
+
+	private bool FirstCharge = true;
 
 	// Use this for initialization
 	void Start () {
@@ -55,11 +60,17 @@ public class BossScript : MonoBehaviour {
 		}
 
 		DisableAllWeapons ();
-		attackCooldown = attackRate;
+		attackCooldown = chargeLength;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (FirstCharge)
+		{
+			ChargeUp.Play ();
+			FirstCharge = false;
+		}
 
 		//Count down until next shot
 		if (attackCooldown > 0)
@@ -73,16 +84,21 @@ public class BossScript : MonoBehaviour {
 
 			if (attackType == 1) {
 				MachineGunAttack ();
+				attackCooldown = attackLength;
 			} else if (attackType == 2) {
 				ShotgunAttack ();
+				attackCooldown = attackLength;
 			} else if (attackType == 3) {
 				StraightShooterAttack ();
+				attackCooldown = attackLength;
 			} else if (attackType == 4) {
 				MissleAttack ();
+				attackCooldown = attackLength;
 			} else if (attackType == 0) {
 				DisableAllWeapons ();
+				ChargeUp.Play ();
+				attackCooldown = chargeLength;
 			}
-			attackCooldown = attackRate;
 		}
 	}
 
@@ -110,12 +126,16 @@ public class BossScript : MonoBehaviour {
 
 	public void MissleAttack()
 	{
+		if (missleFireSound != null) {
+			missleFireSound.Play ();
+		}
 		for (int i = 0; i <= numberOfMissles; i++) 
 		{
 			var missle = Instantiate(misslePrefab) as Transform;
-			missle.position = new Vector3(transform.position.x, transform.position.y + Random.Range(0f, 1f), transform.position.z);
+			missle.position = new Vector3(transform.position.x - Random.Range(-0.5f, -1.5f), transform.position.y + 0.5f, transform.position.z);
 			MoveTowardScript missleMovement = missle.GetComponent<MoveTowardScript> ();
 			HealthScript missleHealth = missle.GetComponent<HealthScript> ();
+			missle.GetComponent<EnemyScript> ().enabled = false;
 			if (missleMovement != null) 
 			{
 				missleMovement.objectToMoveTowards = GameObject.FindGameObjectWithTag ("Player");

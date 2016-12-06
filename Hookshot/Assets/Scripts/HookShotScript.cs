@@ -48,6 +48,8 @@ public class HookShotScript : MonoBehaviour {
 	public AudioSource firedSound;
 	public AudioSource latchedSound;
 
+	private Vector3 playerPosAtCollision;
+
     // Use this for initialization
     void Start () {
         playerScript = GetComponentInParent<PlayerScript>();
@@ -75,6 +77,7 @@ public class HookShotScript : MonoBehaviour {
 		if (visibility != null) {
 			visibility.enabled = false;
 		}
+		playerPosAtCollision = ZeroVector;
     }
 	
 	// Update is called once per frame
@@ -182,7 +185,14 @@ public class HookShotScript : MonoBehaviour {
     {
         if (blocked)
         {
-			playerScript.gameObject.transform.parent = PlayerParent;
+			if (playerPosAtCollision != ZeroVector) {
+				playerScript.gameObject.transform.parent = PlayerParent;
+				playerScript.gameObject.transform.position = playerPosAtCollision;
+
+			} else {
+				playerScript.gameObject.transform.parent = PlayerParent;
+			}
+			playerPosAtCollision = ZeroVector;
 			
             //direction is now directed to the player
             direction = playerScript.transform.position - transform.position;
@@ -245,8 +255,10 @@ public class HookShotScript : MonoBehaviour {
 		else if (collider.gameObject.tag == "Player" && latched) 
 		{
 			//blocked = true;
+			playerPosAtCollision = collider.transform.position;
 			OnPlayer = true;
 			collider.transform.parent = this.gameObject.transform;
+			collider.transform.position = playerPosAtCollision;
 		} 
     }
 
@@ -270,25 +282,33 @@ public class HookShotScript : MonoBehaviour {
     }
 
     private void ResetHookshot()
-    {
-		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z));
+	{
+		lineRenderer.SetPosition (0, new Vector3 (this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z));
+		lineRenderer.SetPosition (1, new Vector3 (this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z));
 
-        transform.position = playerScript.transform.position;
+		transform.position = playerScript.transform.position;
 
-        playerScript.hookshotAdjust = ZeroVector;
-		playerScript.gameObject.transform.parent = PlayerParent;
+		playerScript.hookshotAdjust = ZeroVector;
 
-        transform.parent = parent;
+		if (playerPosAtCollision != ZeroVector) {
+			playerScript.gameObject.transform.parent = PlayerParent;
+			playerScript.gameObject.transform.position = playerPosAtCollision;
+
+		} else {
+			playerScript.gameObject.transform.parent = PlayerParent;
+		}
+		playerPosAtCollision = ZeroVector;
+
+		transform.parent = parent;
          
-        blocked = false;
-        fired = false;
-        latched = false;
+		blocked = false;
+		fired = false;
+		latched = false;
 		OnPlayer = false;
 		this.gameObject.layer = LayerMask.NameToLayer ("Default");
 		if (visibility != null) {
 			visibility.enabled = false;
 		}
-    }
+	}
 
 }

@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\CraneButtonScript.cs" />
      <Compile Include="Assets\FloorGrate.cs" />
+     <Compile Include="Assets\KeepRotationSameScript.cs" />
      <Compile Include="Assets\LightColorPick.cs" />
      <Compile Include="Assets\Prefabs\KeyCards\Card_Glow.cs" />
      <Compile Include="Assets\Prefabs\Lights\LightColor.cs" />

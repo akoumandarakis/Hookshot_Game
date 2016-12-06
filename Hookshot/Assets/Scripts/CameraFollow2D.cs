@@ -25,6 +25,8 @@ public class CameraFollow2D : MonoBehaviour
 
 	private GameObject targetObject;
 
+	public bool ZoomOut = true;
+	private bool ZoomedOut;
 
     // Use this for initialization
     private void Start()
@@ -72,6 +74,15 @@ public class CameraFollow2D : MonoBehaviour
 				}
 
 
+			}
+
+			if (ZoomOut && !ZoomedOut) {
+				this.gameObject.GetComponent<Camera>().orthographicSize += 0.005f;
+
+				if (this.gameObject.GetComponent<Camera>().orthographicSize >= 3)
+				{
+					ZoomedOut = true;
+				}
 			}
 
             transform.position = newPos;
