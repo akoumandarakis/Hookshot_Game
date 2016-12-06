@@ -64,7 +64,7 @@ public class HookShotScript : MonoBehaviour {
 		lineRenderer.SetWidth(0.01F, 0.01F);
 		lineRenderer.SetVertexCount(2);
 
-        parent = transform.parent;
+        parent = this.gameObject.transform.parent;
 
         fired = false;
         latched = false;
@@ -258,7 +258,6 @@ public class HookShotScript : MonoBehaviour {
 			playerPosAtCollision = collider.transform.position;
 			OnPlayer = true;
 			collider.transform.parent = this.gameObject.transform;
-			collider.transform.position = playerPosAtCollision;
 		} 
     }
 
@@ -299,7 +298,7 @@ public class HookShotScript : MonoBehaviour {
 		}
 		playerPosAtCollision = ZeroVector;
 
-		transform.parent = parent;
+		this.gameObject.transform.parent = parent;
          
 		blocked = false;
 		fired = false;
