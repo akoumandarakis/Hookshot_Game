@@ -10,6 +10,8 @@ public class MusicPlayerScript : MonoBehaviour {
     public AudioClip bossIntro;
     public AudioClip bossLoop;
 
+	public AudioClip VictoryTheme;
+
     private AudioSource source;
 
     private delegate void NextTrack();
@@ -73,6 +75,14 @@ public class MusicPlayerScript : MonoBehaviour {
             source.Play();
         }
     }
+
+	public void VictoryThemeStart()
+	{
+		if (source.clip != VictoryTheme) {
+			source.clip = VictoryTheme;
+			source.Play ();
+		}
+	}
 
     public void BossEnter()
     {
