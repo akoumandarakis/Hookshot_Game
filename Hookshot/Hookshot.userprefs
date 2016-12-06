@@ -1,14 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ZeroGSwitchScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MusicPlayerScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="8" Column="30" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" Line="45" Column="31" />
-      <File FileName="Assets/Scripts/Crane movement/hookablesMove.cs" Line="31" Column="1" />
-      <File FileName="Assets/CraneButtonScript.cs" Line="10" Column="1" />
-      <File FileName="Assets/Scripts/ZeroGSwitchScript.cs" Line="12" Column="36" />
-      <File FileName="Assets/Scripts/DeathMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/OnBossRoomEnter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WeaponScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DoorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HookShotScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/floatingobjects.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BoxFloatingScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeathMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/InventoryScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BossScript.cs" Line="125" Column="50" />
+      <File FileName="Assets/Scripts/MusicPlayerScript.cs" Line="84" Column="4" />
+      <File FileName="Assets/Scripts/OnBossDeathScript.cs" Line="20" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
