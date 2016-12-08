@@ -49,6 +49,10 @@ public class BossScript : MonoBehaviour {
 	public ParticleSystem death8;
 	public ParticleSystem death9;
 	public ParticleSystem death10;
+	public ParticleSystem death11;
+	public ParticleSystem death12;
+	public ParticleSystem death13;
+	public ParticleSystem death14;
 
 	public AudioSource deathSound;
 	public AudioSource bigBoom;
@@ -117,6 +121,10 @@ public class BossScript : MonoBehaviour {
 			if (DeathTimer <= 0) {
 				death9.Emit (200);
 				death10.Emit (200);
+				death11.Emit (200);
+				death12.Emit (200);
+				death13.Emit (200);
+				death14.Emit (200);
 				bigBoom.Play ();
 				Destroy (this.gameObject);
 			}
