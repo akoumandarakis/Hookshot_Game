@@ -14,10 +14,10 @@ public class InventoryScript : MonoBehaviour {
 		WeaponScript weapon = this.gameObject.GetComponentInChildren<WeaponScript> ();
 		if (pickupInfo != null)
 		{
-			pickupSound.Play ();
 			if (pickupInfo.KeyCard) 
 			{
 				inventory.Add (pickupInfo.NameOfKeyCard);
+				pickupSound.Play ();
 				Destroy (pickupInfo.gameObject);
 			}
 			else if (pickupInfo.Health && health != null && !health.isEnemy && health.hp < health.maxHP)
@@ -28,12 +28,13 @@ public class InventoryScript : MonoBehaviour {
 				{
 					health.hp = health.maxHP;
 				}
-
+				pickupSound.Play ();
 				Destroy(pickupInfo.gameObject);
 			}
 			else if (pickupInfo.Ammo)
 			{
 				int index = 0;
+				pickupSound.Play ();
 				foreach (KeyValuePair<Transform, int> shotType in weapon.shotTypes) 
 				{
 					if (pickupInfo.AmmoType.gameObject.name == shotType.Key.gameObject.name) 

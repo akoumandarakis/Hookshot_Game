@@ -15,6 +15,9 @@ public class DoorScript : MonoBehaviour {
 
 	SpriteRenderer rend;
 
+	public AudioSource DoorOpen;
+	private bool played = false;
+
 	void Start(){
 		rend = doorLight.GetComponent<SpriteRenderer> ();
 		rend.color = Red;
@@ -34,6 +37,12 @@ public class DoorScript : MonoBehaviour {
 					if (animator != null) 
 					{
 						animator.setAnimation ("door open");
+					}
+					if (DoorOpen != null) {
+						if (!played) {
+							DoorOpen.Play ();
+							played = true;
+						}
 					}
 					door.layer = LayerMask.NameToLayer("Default");
 				}

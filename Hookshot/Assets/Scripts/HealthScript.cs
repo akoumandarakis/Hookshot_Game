@@ -17,6 +17,8 @@ public class HealthScript : MonoBehaviour
 	public AudioSource missleDamageSound;
 	public AudioSource deathSound;
 
+	public bool IsBoss = false;
+
     void Start()
     {
         maxHP = hp;
@@ -32,7 +34,11 @@ public class HealthScript : MonoBehaviour
 			if (deathSound != null) {
 				deathSound.Play ();
 			}
-			Destroy (gameObject);
+			if (!IsBoss) {
+				Destroy (gameObject);
+			} else if (IsBoss) {
+				this.gameObject.GetComponent<BossScript> ().StartDeath ();
+			}
 		}
 	}
     void OnTriggerEnter2D(Collider2D collider)
