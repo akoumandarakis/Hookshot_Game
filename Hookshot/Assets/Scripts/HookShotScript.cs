@@ -41,14 +41,10 @@ public class HookShotScript : MonoBehaviour {
 
 	private WeaponScript weapon;
 
-	private Transform PlayerParent;
-
 	public ParticleSystem hookshotFlash;
 
 	public AudioSource firedSound;
 	public AudioSource latchedSound;
-
-	private Vector3 playerPosAtCollision;
 
     // Use this for initialization
     void Start () {
@@ -71,13 +67,11 @@ public class HookShotScript : MonoBehaviour {
         blocked = false;
 
 		playerScript.hookRetractSpeed = retractSpeed;
-		PlayerParent = playerScript.transform.parent;
 
 		visibility = GetComponentInParent<SpriteRenderer> ();
 		if (visibility != null) {
 			visibility.enabled = false;
 		}
-		playerPosAtCollision = ZeroVector;
     }
 	
 	// Update is called once per frame
@@ -175,6 +169,9 @@ public class HookShotScript : MonoBehaviour {
         }
         else if (fired && latched)
         {
+			if (OnPlayer) {
+				playerScript.gameObject.transform.position = this.gameObject.transform.position;
+			}
             Retract();
         }
 
@@ -184,15 +181,7 @@ public class HookShotScript : MonoBehaviour {
     private void Retract()
     {
         if (blocked)
-        {
-			if (playerPosAtCollision != ZeroVector) {
-				playerScript.gameObject.transform.parent = PlayerParent;
-				playerScript.gameObject.transform.position = playerPosAtCollision;
-
-			} else {
-				playerScript.gameObject.transform.parent = PlayerParent;
-			}
-			playerPosAtCollision = ZeroVector;
+		{
 			
             //direction is now directed to the player
             direction = playerScript.transform.position - transform.position;
@@ -254,10 +243,7 @@ public class HookShotScript : MonoBehaviour {
 		} 
 		else if (collider.gameObject.tag == "Player" && latched) 
 		{
-			//blocked = true;
-			playerPosAtCollision = collider.transform.position;
 			OnPlayer = true;
-			collider.transform.parent = this.gameObject.transform;
 		} 
     }
 
@@ -288,15 +274,6 @@ public class HookShotScript : MonoBehaviour {
 		transform.position = playerScript.transform.position;
 
 		playerScript.hookshotAdjust = ZeroVector;
-
-		if (playerPosAtCollision != ZeroVector) {
-			playerScript.gameObject.transform.parent = PlayerParent;
-			playerScript.gameObject.transform.position = playerPosAtCollision;
-
-		} else {
-			playerScript.gameObject.transform.parent = PlayerParent;
-		}
-		playerPosAtCollision = ZeroVector;
 
 		this.gameObject.transform.parent = parent;
          
