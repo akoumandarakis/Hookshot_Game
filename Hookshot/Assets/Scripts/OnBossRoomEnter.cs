@@ -13,6 +13,9 @@ public class OnBossRoomEnter : MonoBehaviour {
 	private PolygonCollider2D bossCollider;
 
 	public GameObject BossHPBar;
+	public GameObject BossIcon;
+	public GameObject GUI;
+	private GUIScript guiScript;
 
 	private bool entered = false;
 
@@ -36,6 +39,9 @@ public class OnBossRoomEnter : MonoBehaviour {
 			bossEnter.enabled = false;
 			bossCollider.enabled = false;
 		}
+		if (GUI != null) {
+			guiScript = GUI.GetComponent<GUIScript> ();
+		}
 		entranceCountdown = -11;
 	}
 
@@ -45,10 +51,12 @@ public class OnBossRoomEnter : MonoBehaviour {
         {
             musicScript.BossEnter();
 			bossEnter.enabled = true;
-			//cameraControl.ZoomOut = true;
+			cameraControl.ZoomOut = true;
+			guiScript.ScaleToZoom = true;
 			entranceCountdown = entranceTimer;
 			entered = true;
 			BossHPBar.SetActive (true);
+			BossIcon.SetActive (true);
         }
 
 

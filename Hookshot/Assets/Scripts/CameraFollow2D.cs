@@ -77,6 +77,7 @@ public class CameraFollow2D : MonoBehaviour
 			}
 
 			if (ZoomOut && !ZoomedOut) {
+				
 				this.gameObject.GetComponent<Camera>().orthographicSize += 0.005f;
 
 				if (this.gameObject.GetComponent<Camera>().orthographicSize >= 3)

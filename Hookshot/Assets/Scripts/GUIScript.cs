@@ -27,6 +27,8 @@ public class GUIScript : MonoBehaviour
 	public GameObject KeycardIndicator4;
 	public GameObject KeycardIndicator5;
 
+	public bool ScaleToZoom;
+	private bool scaled;
 
     void Start()
     {
@@ -49,6 +51,15 @@ public class GUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (ScaleToZoom && !scaled) {
+			this.transform.localScale = new Vector3 (this.transform.localScale.x + 0.0025f, this.transform.localScale.y + 0.0025f, this.transform.localScale.z);
+
+			if (this.transform.localScale.x >= 1.5)
+			{
+				scaled = true;
+			}
+		}
+
         if (PlayerHP != null)
         {
             float maxHP = (float)PlayerHP.maxHP;
