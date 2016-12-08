@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\CharacterController2D.cs" />
      <Compile Include="Assets\Scripts\Crane movement\hookablesMove.cs" />
+     <Compile Include="Assets\Scripts\DeathColliderScript.cs" />
      <Compile Include="Assets\Scripts\DeathMenuScript.cs" />
      <Compile Include="Assets\Scripts\DoorScript.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
