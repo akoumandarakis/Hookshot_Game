@@ -151,11 +151,12 @@ public class HookShotScript : MonoBehaviour {
         if (fired)
         {
             //if the hook has reached max distance it is the same as being blocked
-            Vector3 HookToPlayer = transform.position - playerScript.transform.position;
-            if (HookToPlayer.magnitude > maxDistanceFromPlayer)
-            {
-                blocked = true;
-            }
+			if (playerScript != null) {
+				Vector3 HookToPlayer = transform.position - playerScript.transform.position;
+				if (HookToPlayer.magnitude > maxDistanceFromPlayer) {
+					blocked = true;
+				}
+			}
         }
 
         //if the object hit something that isn't hookable
