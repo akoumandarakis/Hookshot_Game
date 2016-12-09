@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1feef80c1c20c4850b311e20b4e60144
-timeCreated: 1481055183
+timeCreated: 1481264294
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -193,6 +193,7 @@ TextureImporter:
     21300372: Hookshot Texture Atlas_186
     21300374: Hookshot Texture Atlas_187
     21300376: Hookshot Texture Atlas_188
+    21300378: Hookshot Texture Atlas_189
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -2698,6 +2699,19 @@ TextureImporter:
         y: 989
         width: 4
         height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hookshot Texture Atlas_189
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 987
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
