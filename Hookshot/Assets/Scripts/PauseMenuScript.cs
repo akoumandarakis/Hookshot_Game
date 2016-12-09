@@ -6,6 +6,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     public GameObject PausedUI;
     public GameObject DeadUI;
+    public GameObject VictoryUI;
 
 	public GameObject player;
 
@@ -13,7 +14,8 @@ public class PauseMenuScript : MonoBehaviour {
     private AudioSource loseSound;
 
     private bool paused = false;
-    private bool dead = false;
+    private bool lockPauseUI = false;
+    private bool victory = false;
 
     void Start()
     {
@@ -21,7 +23,6 @@ public class PauseMenuScript : MonoBehaviour {
 			loseSound = _LoseSound.GetComponent<AudioSource> ();
 		}
         PausedUI.SetActive(false);
-
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class PauseMenuScript : MonoBehaviour {
             paused = !paused;
         }
 
-        if (paused && !dead)
+        if (paused && !lockPauseUI)
         {
             PausedUI.SetActive(true);
             Time.timeScale = 0;
@@ -79,11 +80,23 @@ public class PauseMenuScript : MonoBehaviour {
 			loseSound.Play ();
         }
 
-        dead = true;
+        lockPauseUI = true;
         Time.timeScale = 0f;
         if (DeadUI != null)
         {
             DeadUI.SetActive(true);
         }
     }
+
+    public void OnVictory()
+    {
+        lockPauseUI = true;
+        Time.timeScale = 0f;
+
+        if (VictoryUI != null && !victory)
+        {
+            victory = true;
+            VictoryUI.SetActive(true);
+        }
+    } 
 }

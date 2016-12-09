@@ -30,8 +30,6 @@ public class MusicPlayerScript : MonoBehaviour {
         {
             if (levelIntro != null)
             {
-                Debug.Log("LevelIntro");
-
                 source.clip = levelIntro;
                 source.Play();
                 StartCoroutine(PlayNextTrack(StartLevelLoop));
@@ -42,8 +40,6 @@ public class MusicPlayerScript : MonoBehaviour {
     {
         if (levelLoop != null)
         {
-            Debug.Log("LevelLoop");
-
             source.clip = levelLoop;
             source.Play();
         }
@@ -56,7 +52,6 @@ public class MusicPlayerScript : MonoBehaviour {
         {
             if (bossIntro != null)
             {
-                Debug.Log("BossIntro");
                 source.clip = bossIntro;
                 source.Play();
 
@@ -69,8 +64,6 @@ public class MusicPlayerScript : MonoBehaviour {
     {
         if (bossLoop != null)
         {
-            Debug.Log("BossLoop");
-
             source.clip = bossLoop;
             source.Play();
         }
