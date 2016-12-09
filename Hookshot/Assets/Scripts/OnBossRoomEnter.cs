@@ -13,7 +13,7 @@ public class OnBossRoomEnter : MonoBehaviour {
 	private PolygonCollider2D bossCollider;
 
 	public GameObject BossHPBar;
-	public GameObject BossIcon;
+	public GameObject BossHud;
 	public GameObject GUI;
 	private GUIScript guiScript;
 
@@ -55,12 +55,8 @@ public class OnBossRoomEnter : MonoBehaviour {
 			guiScript.ScaleToZoom = true;
 			entranceCountdown = entranceTimer;
 			entered = true;
-			BossHPBar.SetActive (true);
-			BossIcon.SetActive (true);
+			BossHud.SetActive (true);
         }
-
-
-
     }
 
 	void Update()
@@ -71,7 +67,7 @@ public class OnBossRoomEnter : MonoBehaviour {
 			entranceCountdown -= Time.deltaTime;
 		}
 
-		if (entranceCountdown <= 0 && entranceCountdown >= -10) {
+		if (entranceCountdown <= 0 && entranceCountdown >= -10 && Boss != null) {
 			bossEnter.enabled = false;
 			bossControl.enabled = true;
 			bossCollider.enabled = true;

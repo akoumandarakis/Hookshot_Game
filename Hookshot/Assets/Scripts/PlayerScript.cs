@@ -292,7 +292,6 @@ public class PlayerScript : MonoBehaviour {
 
         mainCamera.GetComponent<PauseMenuScript>().OnPlayerDeath();
         
-        Debug.Log("End of OnDestroy()");
     }
 
 	public float Jump(Vector3 velocity)
