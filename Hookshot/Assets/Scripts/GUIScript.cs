@@ -119,6 +119,10 @@ public class GUIScript : MonoBehaviour
 			float BossCurrentHP = (float)BossHP.hp;
 			float scale = BossCurrentHP / maxBossHP;
 
+			if (scale <= 0) {
+				scale = 0;
+			}
+
 			Vector3 newLocalScale = new Vector3(originalBossHPScale.x * scale,
 				originalHPScale.y,
 				0);
@@ -126,7 +130,7 @@ public class GUIScript : MonoBehaviour
 		}
 		else
 		{
-			Vector3 newLocalScale = new Vector3(originalBossHPScale.x * .01F,
+			Vector3 newLocalScale = new Vector3(originalBossHPScale.x * 0,
 				originalHPScale.y,
 				0);
 			BossHealthBar.transform.localScale = newLocalScale;

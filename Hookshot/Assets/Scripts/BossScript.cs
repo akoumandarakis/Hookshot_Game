@@ -36,6 +36,29 @@ public class BossScript : MonoBehaviour {
 
 	private bool FirstCharge = true;
 
+	private bool IsDying = false;
+	private float DeathTimer = 6f;
+
+	public ParticleSystem death1;
+	public ParticleSystem death2;
+	public ParticleSystem death3;
+	public ParticleSystem death4;
+	public ParticleSystem death5;
+	public ParticleSystem death6;
+	public ParticleSystem death7;
+	public ParticleSystem death8;
+	public ParticleSystem death9;
+	public ParticleSystem death10;
+	public ParticleSystem death11;
+	public ParticleSystem death12;
+	public ParticleSystem death13;
+	public ParticleSystem death14;
+
+	public AudioSource deathSound;
+	public AudioSource bigBoom;
+	private bool notPlayed = true;
+
+
 	// Use this for initialization
 	void Start () {
 		foreach (WeaponScript weapon in this.gameObject.GetComponentsInChildren<WeaponScript>()) 
@@ -66,20 +89,58 @@ public class BossScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (FirstCharge)
-		{
-			ChargeUp.Play ();
-			FirstCharge = false;
-		}
+		if (IsDying) {
 
-		//Count down until next shot
-		if (attackCooldown > 0)
-		{
+			DisableAllWeapons ();
+			if (notPlayed) {
+				deathSound.Play ();
+				notPlayed = false;
+			}
+
+			if (DeathTimer > 0) {
+				DeathTimer -= Time.deltaTime;
+			}
+
+			if (DeathTimer <= 5 && DeathTimer >= 4) {
+				death1.Emit (30);
+				
+			}
+			if (DeathTimer <= 4 && DeathTimer >= 3) {
+				death2.Emit (30);
+			}
+			if (DeathTimer <= 3 && DeathTimer >= 2) {
+				death3.Emit (30);
+				death4.Emit (30);
+			}
+			if (DeathTimer <= 2 && DeathTimer >= 1) {
+				death5.Emit (30);
+				death6.Emit (30);
+				death7.Emit (30);
+				death8.Emit (30);
+			}
+			if (DeathTimer <= 0) {
+				death9.Emit (200);
+				death10.Emit (200);
+				death11.Emit (200);
+				death12.Emit (200);
+				death13.Emit (200);
+				death14.Emit (200);
+				bigBoom.Play ();
+				Destroy (this.gameObject);
+			}
+		}
+			
+			if (FirstCharge) {
+				ChargeUp.Play ();
+				FirstCharge = false;
+			}
+
+			//Count down until next shot
+		if (attackCooldown > 0) {
 			attackCooldown -= Time.deltaTime;
 		}
 
-		if (attackCooldown <= 0) 
-		{
+		if (attackCooldown <= 0) {
 			ChooseNextAttack ();
 
 			if (attackType == 1) {
@@ -96,10 +157,13 @@ public class BossScript : MonoBehaviour {
 				attackCooldown = attackLength;
 			} else if (attackType == 0) {
 				DisableAllWeapons ();
-				ChargeUp.Play ();
+				if (!IsDying) {
+					ChargeUp.Play ();
+				}
 				attackCooldown = chargeLength;
 			}
 		}
+
 	}
 
 	public void MachineGunAttack()
@@ -180,5 +244,10 @@ public class BossScript : MonoBehaviour {
 			attackType = 0;
 
 		}
+	}
+
+	public void StartDeath()
+	{
+		IsDying = true;
 	}
 }

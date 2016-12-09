@@ -1,18 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HookShotScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BossScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/DeathColliderScript.cs" Line="5" Column="2" />
-      <File FileName="Assets/Scripts/HookShotScript.cs" Line="159" Column="5" />
+      <File FileName="Assets/Scripts/GUIScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/OnBossRoomEnter.cs" Line="44" Column="42" />
+      <File FileName="Assets/Scripts/BossScript.cs" Line="55" Column="31" />
+      <File FileName="Assets/Scripts/OnBossRoomEnter.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/WeaponScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
       <File FileName="Assets/KeepRotationSameScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/CameraFollow2D.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BossScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUIScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ZeroGAreaScript.cs" Line="14" Column="3" />
+      <File FileName="Assets/Scripts/ZeroGAreaScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/OnBossDeathScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DoorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/InventoryScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeathColliderScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

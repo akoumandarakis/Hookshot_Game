@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: ee6467dbf16b44fb8bfe76a029622a5d
-timeCreated: 1481213591
+guid: 63a173edd5d744121b53a9d260e7e6c8
+timeCreated: 1481223750
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Boss  Shotgun_0
+    21300000: Boss  Idle_0
+    21300002: Boss  Idle_1
+    21300004: Boss  Idle_2
+    21300006: Boss  Idle_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,15 +57,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss  Shotgun_0
+      name: Boss  Idle_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 137
-        width: 109
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss  Idle_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss  Idle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss  Idle_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
